@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
   get 'users/new'
   get 'users/create'
   get 'users/show'
@@ -13,10 +16,11 @@ Rails.application.routes.draw do
 
   # User signup alias
   get "/signup", to: "users#new", as: "signup"
-
-  # Users resources
   resources :users, only: [:new, :create, :show]
+  root "users#new"  # the default landing page will be the signup page
 
-  # Root goes to signup page
-  root "users#new"
+  # login/logout stuff
+  get "/login",  to: "sessions#new",     as: "login"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy", as: "logout"
 end
