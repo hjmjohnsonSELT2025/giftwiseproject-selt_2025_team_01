@@ -1,0 +1,30 @@
+<h1>Add a New Recipient</h1>
+
+<%= form_with model: @recipient, local: true do |f| %>
+  <% if @recipient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
+      <ul>
+        <% @recipient.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Recipient" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to Recipients", recipients_path %>

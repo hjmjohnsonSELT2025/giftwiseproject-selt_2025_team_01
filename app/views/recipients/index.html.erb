@@ -1,0 +1,14 @@
+<h1>Your Recipients</h1>
+
+<%= link_to "Add Recipient", new_recipient_path %>
+
+<ul>
+  <% @recipients.each do |r| %>
+    <li>
+      <strong><%= r.name %></strong> – <%= r.description %>
+      <%= link_to "Edit", edit_recipient_path(r) %> |
+      <%= link_to "Delete", recipient_path(r), method: :delete,
+                  data: { turbo_method: :delete, confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
