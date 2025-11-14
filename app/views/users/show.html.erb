@@ -1,1 +1,17 @@
 <h1>Welcome, <%= @user.email %></h1>
+
+<h1>Your Recipients</h1>
+
+<p><%= link_to "Add Recipient", new_recipient_path, class: "button" %></p>
+
+<% if @recipients.any? %>
+  <ul>
+    <% @recipients.each do |r| %>
+      <li>
+        <strong><%= r.full_name %></strong> — Age <%= r.age %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no recipients yet.</p>
+<% end %>
