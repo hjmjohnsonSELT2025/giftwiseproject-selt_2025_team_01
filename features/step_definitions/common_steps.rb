@@ -30,6 +30,13 @@ Then('I should not see {string}') do |text|
   expect(page).to_not have_content text
 end
 
-Given('A user exists with email {string} and password {string}') do |email, password|
+Given('a user exists with email {string} and password {string}') do |email, password|
   User.create!(email: email, password: password, password_confirmation: password)
+end
+
+Given('I am logged in as {string}') do |email|
+  visit '/login'
+  fill_in 'Email', with: email
+  fill_in 'Password', with: 'password'
+  click_button 'Log In'
 end
