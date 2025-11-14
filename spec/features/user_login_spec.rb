@@ -21,14 +21,14 @@ RSpec.feature "User Login", type: :feature do
     expect(page).to have_content("Invalid email or password")
   end
 
-  # scenario "User logs out successfully" do
-  #   # Log in first
-  #   visit login_path
-  #   fill_in "Email", with: "test@example.com"
-  #   fill_in "Password", with: "password123"
-  #   click_button "Log In"
-  #
-  #   click_link "Logout"
-  #   expect(page).to have_content("You have been logged out")
-  # end
+  scenario "User logs out successfully" do
+    # Log in first
+    visit login_path
+    fill_in "Email", with: "test@example.com"
+    fill_in "Password", with: "password123"
+    click_button "Log In"
+
+    click_link "Logout"
+    expect(page).to have_content("You have been logged out")
+  end
 end
