@@ -1,5 +1,10 @@
 <h1>Your Recipients</h1>
 
+<p>
+  Logged in as <%= current_user.email %> |
+  <%= link_to "Log Out", logout_path, method: :delete, data: { turbo_method: :delete, confirm: "Are you sure you want to log out?" } %>
+</p>
+
 <%= link_to "Add Recipient", new_recipient_path %>
 
 <ul>
