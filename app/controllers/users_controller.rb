@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    redirect_to recipients_path
   end
 
   private
