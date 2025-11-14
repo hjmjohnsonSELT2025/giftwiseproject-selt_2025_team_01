@@ -3,4 +3,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { message: "This Email is already in use" }
   validates :password, length: { minimum: 6 }
+
+  #to assign a user recipients
+  has_many :recipients
 end

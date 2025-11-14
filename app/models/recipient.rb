@@ -13,6 +13,9 @@ class Recipient < ApplicationRecord
   validates :likes,       presence: true
   validates :dislikes,    presence: true
 
+  #tie each recipient to a user
+  belongs_to :user
+
   def full_name
     "#{first_name} #{last_name}"
   end

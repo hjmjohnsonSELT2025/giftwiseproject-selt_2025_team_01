@@ -15,6 +15,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
+    #to be able to show recipients that have to belong to the user
+    #@recipients = @user.recipients
+    @recipients = Recipient.all
   end
 
   private
