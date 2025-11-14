@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <!-- This block ensures that flashes are available on all views -->
+    <% flash.each do |type, message| %>
+      <div class="flash <%= type %>"><%= message %></div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
