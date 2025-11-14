@@ -33,3 +33,29 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+.idea/
+
+# Ignore coverage and test reports
+/coverage/
+/spec/examples.txt
+
+# Ignore uploaded files in development
+/public/uploads/*
+!/public/uploads/.keep
+
+# Ignore compiled assets
+/public/assets
+/public/packs
+/node_modules
+/yarn-error.log
+
+# Ignore database files (SQLite specific)
+# These don't apply to PostgreSQL but useful if someone switches to sqlite for local dev
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore local database configs or dumps
+/config/database.yml
+*.sql
+*.dump

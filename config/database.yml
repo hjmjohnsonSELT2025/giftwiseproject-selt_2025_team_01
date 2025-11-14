@@ -20,6 +20,9 @@ test:
   <<: *default
   database: storage/test.sqlite3
 
+# Editing this to use postgres for Heroku
 production:
   <<: *default
-  database: storage/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV["DATABASE_URL"] %>
