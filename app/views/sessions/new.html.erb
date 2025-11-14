@@ -16,6 +16,10 @@
   </div>
 <% end %>
 
+<p>
+  Don't have an account? <%= link_to "Sign Up", signup_path %>
+</p>
+
 <% if flash[:alert] %>
   <p><%= flash[:alert] %></p>
 <% end %>

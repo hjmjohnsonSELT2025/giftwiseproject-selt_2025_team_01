@@ -28,7 +28,8 @@ RSpec.feature "User Login", type: :feature do
     fill_in "Password", with: "password123"
     click_button "Log In"
 
-    click_link "Logout"
+    expect(page).to have_link("Log Out")
+    click_link "Log Out"
     expect(page).to have_content("You have been logged out")
   end
 end
