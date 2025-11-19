@@ -5,5 +5,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
 
   # recipient-related stuff
+  has_many :events, dependent: :destroy
   has_many :recipients, dependent: :destroy
 end
