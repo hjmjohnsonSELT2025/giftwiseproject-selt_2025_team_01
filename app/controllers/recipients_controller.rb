@@ -14,7 +14,7 @@ class RecipientsController < ApplicationController
     @recipient = current_user.recipients.new(recipient_params)
 
     if @recipient.save
-      redirect_to recipients_path, notice: "Recipient added"
+      redirect_to @recipient, notice: "Recipient added"
     else
       render :new, status: 422
     end
