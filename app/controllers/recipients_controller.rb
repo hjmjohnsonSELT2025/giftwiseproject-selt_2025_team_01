@@ -25,7 +25,7 @@ class RecipientsController < ApplicationController
 
   def update
     if @recipient.update(recipient_params)
-      redirect_to recipients_path, notice: "Recipient updated"
+      redirect_to @recipient, notice: "Recipient updated"
     else
       render :edit, status: 422
     end
