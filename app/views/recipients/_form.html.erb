@@ -1,8 +1,19 @@
-<h1>Edit Recipient</h1>
+<!--
+NOTE:
+This is a partial form for recipients (_form.html.erb), used by both
+new.html.erb and edit.html.erb to avoid duplicating form code.
 
+Key points to remember:
+- `form_with model: @recipient` automatically sets the correct URL and HTTP method
+  depending on whether @recipient is a new record (POST /users/:id) or persisted (PATCH /users/:id)
+- `local: true` disables remote AJAX submission
+- `f.label` and `f.text_field` / `f.text_area` / `f.number_field` generate the form inputs tied to model attributes
+- Validation errors are displayed at the top if @recipient has any
+- Using a partial keeps forms DRY, any changes to the form only need to be made here
+-->
 <%= form_with model: @recipient, local: true do |f| %>
   <% if @recipient.errors.any? %>
-    <div class="errors">
+    <div id="error_explanation">
       <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
       <ul>
         <% @recipient.errors.full_messages.each do |msg| %>
@@ -18,13 +29,26 @@
   </div>
 
   <div>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
   </div>
 
   <div>
-    <%= f.submit "Update Recipient" %>
+    <%= f.label :relationship %><br>
+    <%= f.text_field :relationship %>
+  </div>
+
+  <div>
+    <%= f.label :hobbies %><br>
+    <%= f.text_area :hobbies %>
+  </div>
+
+  <div>
+    <%= f.label :dislikes %><br>
+    <%= f.text_area :dislikes %>
+  </div>
+
+  <div>
+    <%= f.submit %>
   </div>
 <% end %>
-
-<%= link_to "Back to Recipients", recipients_path %>
