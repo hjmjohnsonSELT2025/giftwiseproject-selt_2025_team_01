@@ -13,10 +13,7 @@
 <ul>
   <% @recipients.each do |r| %>
     <li>
-      <strong><%= r.name %></strong> – <%= r.description %>
-      <%= link_to "Edit", edit_recipient_path(r) %> |
-      <%= link_to "Delete", recipient_path(r), method: :delete,
-                  data: { turbo_method: :delete, confirm: "Are you sure?" } %>
+      <%= link_to r.name, recipient_path(r) %>
     </li>
   <% end %>
 </ul>

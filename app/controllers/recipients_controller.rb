@@ -1,6 +1,6 @@
 class RecipientsController < ApplicationController
   before_action :require_login
-  before_action :set_recipient, only: [:edit, :update, :destroy]
+  before_action :set_recipient, only: [:edit, :update, :destroy, :show]
 
   def index
     @recipients = current_user.recipients
@@ -14,9 +14,9 @@ class RecipientsController < ApplicationController
     @recipient = current_user.recipients.new(recipient_params)
 
     if @recipient.save
-      redirect_to recipients_path, notice: "Recipient added"
+      redirect_to @recipient, notice: "Recipient added"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: 422
     end
   end
 
@@ -25,9 +25,9 @@ class RecipientsController < ApplicationController
 
   def update
     if @recipient.update(recipient_params)
-      redirect_to recipients_path, notice: "Recipient updated"
+      redirect_to @recipient, notice: "Recipient updated"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: 422
     end
   end
 
@@ -36,14 +36,26 @@ class RecipientsController < ApplicationController
     redirect_to recipients_path, notice: "Recipient deleted"
   end
 
+  def show
+    # no need to do anything here—set_recipient already sets @recipient
+    # Rails will render show.html.erb automatically
+  end
+
   private
 
   def set_recipient
-    @recipient = current_user.recipients.find(params[:id])
+    @recipient = current_user.recipients.find_by(id: params[:id])
+    redirect_to recipients_path, alert: "Recipient not found" unless @recipient
   end
 
   def recipient_params
-    params.require(:recipient).permit(:name, :description)
+    params.require(:recipient).permit(
+      :name,
+      :age,
+      :relationship,
+      :hobbies,
+      :dislikes
+    )
   end
 
   def require_login
