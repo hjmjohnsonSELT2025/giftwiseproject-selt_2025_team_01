@@ -1,0 +1,34 @@
+<h1>New Event</h1>
+
+<%= form_with model: @event do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= f.label :name, "Name" %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :date, "Date" %><br>
+    <%= f.date_field :date %>
+  </p>
+
+  <p>
+    <%= f.label :description, "Description" %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit "Create Event" %>
+  </p>
+<% end %>

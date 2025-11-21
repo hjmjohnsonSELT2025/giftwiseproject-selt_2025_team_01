@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   # recipients stuff
   resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :events, only: [:index, :new, :create]
+  resources :events, only: [:index, :new, :create, :edit, :update, :destroy]
 end

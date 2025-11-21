@@ -1,0 +1,24 @@
+<h1>Your Events</h1>
+
+<p>
+  Logged in as <%= current_user.email %> |
+  <%= link_to "View Recipients", recipients_path %> |
+  <%= link_to "Log Out", logout_path, method: :delete, data: { turbo_method: :delete, confirm: "Are you sure you want to log out?" } %>
+</p>
+
+<%= link_to "Add Event", new_event_path %>
+
+
+<ul>
+  <% @events.each do |e| %>
+    <li>
+      <strong><%= e.name %></strong> – <%= e.date %> - <%= e.description %>
+      <%= link_to "Edit", edit_event_path(e) %> |
+      <%= link_to "Delete", event_path(e), method: :delete,
+                  data: { turbo_method: :delete, confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Back to Recipients", recipients_path %>
