@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
 
   def require_login
-    redirect_to login_path unless current_user
+    unless current_user
+      redirect_to login_path, alert: "Please log in to access this page."
+    end
   end
 end
