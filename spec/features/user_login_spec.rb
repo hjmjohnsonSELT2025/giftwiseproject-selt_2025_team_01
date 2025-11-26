@@ -1,3 +1,4 @@
+# ruby
 require "rails_helper"
 
 RSpec.feature "User Login", type: :feature do
@@ -9,7 +10,7 @@ RSpec.feature "User Login", type: :feature do
     fill_in "Password", with: "password123"
     click_button "Log In"
 
-    expect(page).to have_content("Welcome, test@example.com")
+    expect(page).to have_content("Logged in as test@example.com")
   end
 
   scenario "User fails login with invalid credentials" do
