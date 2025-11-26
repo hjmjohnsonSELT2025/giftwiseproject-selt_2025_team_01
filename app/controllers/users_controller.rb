@@ -8,9 +8,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params_signup)
     if @user.save
-      redirect_to @user, notice: "Welcome, #{@user.email}"
-      # session[:user_id] = @user.id
-      # redirect_to root_path, notice: "Welcome, #{@user.email}"
+      #redirect_to @user, notice: "Welcome, #{@user.email}"
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "Welcome, #{@user.email}"
     else
       flash.now[:alert] = "There was an error creating your account."
       render :new, status: :unprocessable_entity
