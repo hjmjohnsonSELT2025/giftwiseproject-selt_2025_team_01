@@ -18,7 +18,7 @@ Feature: User authentication
     When I fill in "Email" with "newuser@example.com"
     And I fill in "Password" with "password"
     And I press "Log In"
-    Then I should see "Welcome"
+    Then I should see "Recipients"
 
   Scenario: Securely logging out
     Given a user exists with email "user@example.com" and password "password"
@@ -27,3 +27,4 @@ Feature: User authentication
     Then I should see "logged out"
     And I should not see "Log out"
     And I should see "Log In"
+
