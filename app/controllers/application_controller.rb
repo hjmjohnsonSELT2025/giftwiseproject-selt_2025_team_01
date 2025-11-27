@@ -24,7 +24,9 @@ class ApplicationController < ActionController::Base
   # Checks authentication state. If the user isn't logged in (session[:user_id] is missing),
   # it interrupts the request and redirects the browser to the login page (View).
   def require_login
-    redirect_to login_path unless session[:user_id]
+    unless current_user
+      redirect_to login_path, alert: "Please log in to access this page."
+    end
   end
 
 end
