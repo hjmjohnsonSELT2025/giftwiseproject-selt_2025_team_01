@@ -25,21 +25,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE THIS ACTION BEFORE PULL REQUEST FOR PROFILES ==============================================
+
   # [MODEL & VIEW] Fetches data to display a user's profile.
   # Queries the User model using the ID stored in the session (security check)
   # and makes the @user variable available to the 'show' View.
-  def show
-    # Show user details here
-    @user = User.find(session[:user_id])
-  end
-
-  # [MODEL & VIEW] Prepares the 'edit' View.
-  # Fetches the current user from the Model so the form in the View is pre-filled
-  # with existing database values.
-  # Form to edit profile details
-  def edit
-    @user = User.find(session[:user_id])
-  end
+  # def show
+  #   # Show user details here
+  #   @user = current_user
+  # end
+  #
 
   private
 
@@ -50,6 +45,10 @@ class UsersController < ApplicationController
   def user_params_signup
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
+
+
+  # DELETE THIS AND ADD TO PROFILE CONTROLLER BEFORE PULL REQUEST FOR PROFILES =======================
+
 
   # [CONTROLLER] Strong Parameters for profile updates.
   # Allows a different set of attributes to be modified than during signup.
