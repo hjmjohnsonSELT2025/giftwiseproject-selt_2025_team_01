@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless session[:user_id]
   end
 
+  # [CONTROLLER & MODEL] Ensures that a Profile exists for the current user.
+  # This method is called before every action in every controller to fix user accounts created
+  # before the Profile update.
+  # If the user is logged in but doesn't have a profile, it creates one with default values.
   def ensure_profile_exists
     return unless current_user # ignore if logged out
 

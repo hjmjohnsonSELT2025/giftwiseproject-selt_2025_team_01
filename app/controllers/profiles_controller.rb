@@ -1,3 +1,4 @@
+# Description: Controller for managing user profiles in the GiftWise application.
 class ProfilesController < ApplicationController
   before_action :require_login
   before_action :set_profile

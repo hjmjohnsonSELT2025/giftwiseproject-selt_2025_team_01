@@ -1,7 +1,8 @@
+# User -> 1 Profile
+# Description: Profile model representing user profiles with validation fields
 class Profile < ApplicationRecord
   belongs_to :user
 
-  # validates :name, presence: true
   validates :name, presence: true, allow_blank: true
   validates :age, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
 
