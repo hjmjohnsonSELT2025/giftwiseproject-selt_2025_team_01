@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   # 1. Instantiates a new User model with sanitized parameters.
   # 2. Triggers Model validations via @user.save.
   # 3. If successful: specific controller logic logs them in immediately (setting session).
+  #   Redirects to Profile edit page to complete profile setup.
   # 4. If failed: re-renders the 'new' View so errors can be displayed.
   def create
     @user = User.new(user_params)
@@ -28,7 +29,6 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 
