@@ -16,3 +16,5 @@
 <% if @profile.user_id == session[:user_id] %>
   <%= link_to "Edit Profile", edit_profile_path(@profile), class: "btn btn-primary" %>
 <% end %>
+<p><%= link_to "Back to Home", root_path %></p>
+
