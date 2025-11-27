@@ -13,17 +13,36 @@ class UsersController < ApplicationController
   # 2. Triggers Model validations via @user.save.
   # 3. If successful: specific controller logic logs them in immediately (setting session).
   # 4. If failed: re-renders the 'new' View so errors can be displayed.
+
+  # OLD CODE BEFORE PROFILE INTEGRATION ==========================================================
+  # def create
+  #   @user = User.new(user_params_signup)
+  #   if @user.save
+  #     #redirect_to @user, notice: "Welcome, #{@user.email}"
+  #     session[:user_id] = @user.id
+  #     redirect_to root_path, notice: "Welcome, #{@user.email}"
+  #   else
+  #     flash.now[:alert] = "There was an error creating your account."
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
+
   def create
-    @user = User.new(user_params_signup)
+    @user = User.new(user_params)
+
     if @user.save
-      #redirect_to @user, notice: "Welcome, #{@user.email}"
+      # automatically create an associated profile with default empty values
+      @user.create_profile
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Welcome, #{@user.email}"
+      redirect_to profile_path(@user.profile), notice: "Edit Profile to get started!"
+      # or redirect_to root_path, notice: "Welcome, #{@user.email}"
     else
+      #render :new
       flash.now[:alert] = "There was an error creating your account."
       render :new, status: :unprocessable_entity
     end
   end
+
 
   # DELETE THIS ACTION BEFORE PULL REQUEST FOR PROFILES ==============================================
 
@@ -42,7 +61,7 @@ class UsersController < ApplicationController
   # Acts as a security gate/firewall to prevent malicious users from overwriting
   # sensitive model attributes (like admin flags) during signup.
   # Used for signup form
-  def user_params_signup
+  def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 

@@ -1,0 +1,18 @@
+<h1>My Profile</h1>
+
+<p><strong>Name:</strong> <%= @profile.name %></p>
+<p><strong>Age:</strong> <%= @profile.age %></p>
+<p><strong>Occupation:</strong> <%= @profile.occupation %></p>
+
+<p><strong>Hobbies:</strong></p>
+<p><%= simple_format(@profile.hobbies) %></p>
+
+<p><strong>Likes:</strong></p>
+<p><%= simple_format(@profile.likes) %></p>
+
+<p><strong>Dislikes:</strong></p>
+<p><%= simple_format(@profile.dislikes) %></p>
+
+<% if @profile.user_id == session[:user_id] %>
+  <%= link_to "Edit Profile", edit_profile_path(@profile), class: "btn btn-primary" %>
+<% end %>

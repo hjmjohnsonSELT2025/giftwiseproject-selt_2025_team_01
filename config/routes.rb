@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # User signup alias
   get "/signup", to: "users#new", as: "signup"
-  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :users, only: [:new, :create]
   root "recipients#index"  # default page is the recipients list when user is logged in
 
   # login/logout stuff
@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
   # recipients stuff
   resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  resources :profiles, only: [:show, :edit, :update]
+
 end
