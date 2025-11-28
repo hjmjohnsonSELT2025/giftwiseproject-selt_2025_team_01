@@ -10,9 +10,11 @@ class Event < ApplicationRecord
   has_many :event_recipients
   has_many :recipients, through: :event_recipients
 
-  # [MODEL] Data Validations - make sure these data fields exist at creation
+  # [MODEL] Data Validations
+  # presence: true - forces this field to be filled out.
   validates :name, presence: true
   validates :date, presence: true
+  validates :budget, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true # numericality - forcing values to be positive. allow_nil - allow it to be blank if not specified
 
   # Note: description, theme, budget, etc. are optional fields and can be left blank.
 end

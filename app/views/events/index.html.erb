@@ -12,9 +12,7 @@
 <ul>
   <% @events.order(:date).each do |e| %>
     <li>
-      <%= link_to e.name, event_path(e) %> – <%= e.date %> – <%= e.theme %>
-      <%= link_to "Edit", edit_event_path(e) %> |
-      <%= link_to "Delete", event_path(e), method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to "#{e.name} – #{e.date}", event_path(e) %>
     </li>
   <% end %>
 </ul>

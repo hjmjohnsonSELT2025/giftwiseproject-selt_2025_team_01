@@ -6,4 +6,5 @@
 <p>Budget: <%= number_to_currency(@event.budget) if @event.budget %></p>
 
 <%= link_to "Edit", edit_event_path(@event) %> |
+<%= link_to "Delete", event_path(@event), data: { turbo_method: :delete } %> |
 <%= link_to "Back to Events", events_path %>
