@@ -1,9 +1,0 @@
----
-name: actionmailer
-version: '7.0'
-source:
-  type: git
-  name: ruby/gem_rbs_collection
-  revision: f1d2dae32fe8d46683fbc79bbd0f1ca391d5e11a
-  remote: https://github.com/ruby/gem_rbs_collection.git
-  repo_dir: gems
