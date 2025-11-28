@@ -1,0 +1,10 @@
+<h1><%= @event.name %></h1>
+
+<p>Date: <%= @event.date %></p>
+<p>Theme: <%= @event.theme %></p>
+<p>Description: <%= @event.description %></p>
+<p>Budget: <%= number_to_currency(@event.budget) if @event.budget %></p>
+
+<%= link_to "Edit", edit_event_path(@event) %> |
+<%= link_to "Delete", event_path(@event), data: { turbo_method: :delete } %> |
+<%= link_to "Back to Events", events_path %>

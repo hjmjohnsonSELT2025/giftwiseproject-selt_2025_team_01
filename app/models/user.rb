@@ -22,6 +22,7 @@ class User < ApplicationRecord
   # to prevent orphaned data.
   has_one :profile, dependent: :destroy
   has_many :recipients, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   # Only validates password on:
   # - User creation

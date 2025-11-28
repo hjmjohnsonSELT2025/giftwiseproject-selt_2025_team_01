@@ -1,18 +1,18 @@
-<h1>Your Recipients</h1>
+<h1>Your Events</h1>
 
 <p>
   Logged in as <%= current_user.email %> |
   <%= link_to "View Profile", profile_path(current_user.profile) %> |
-  <%= link_to "View Events", events_path %> |
+  <%= link_to "View Recipients", recipients_path %> |
   <%= link_to "Log Out", logout_path, method: :delete, data: { turbo_method: :delete, confirm: "Are you sure you want to log out?" } %>
 </p>
 
-<%= link_to "Add Recipient", new_recipient_path %>
+<%= link_to "Add Event", new_event_path %>
 
 <ul>
-  <% @recipients.each do |r| %>
+  <% @events.order(:date).each do |e| %>
     <li>
-      <%= link_to r.name, recipient_path(r) %>
+      <%= link_to "#{e.name} – #{e.date}", event_path(e) %>
     </li>
   <% end %>
 </ul>

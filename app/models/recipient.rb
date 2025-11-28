@@ -16,4 +16,11 @@ class Recipient < ApplicationRecord
 
   # Limits the length of the relationship text to prevent database overflow or UI issues.
   validates :relationship, length: { maximum: 100 }, allow_blank: true
+
+  # [MODEL] Database Association for many-to-many relationship with Events.
+  # Uses the EventRecipient join table to associate multiple Events to a Recipient.
+  # 'has_many :event_recipients' gives access to the join table records for this recipient.
+  # 'has_many :events, through: :event_recipients' allows direct access to the associated events.
+  has_many :event_recipients
+  has_many :events, through: :event_recipients
 end
