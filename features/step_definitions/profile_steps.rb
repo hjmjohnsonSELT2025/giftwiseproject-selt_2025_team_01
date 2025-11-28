@@ -131,3 +131,103 @@ Then(/^a profile should be created with the following attributes:$/) do |table|
     end
   end
 end
+
+Given(/^an existing user with a profile$/) do
+  @user = User.create!(
+    email: "profileuser@example.com",
+    password: "password123",
+    password_confirmation: "password123"
+  )
+
+  @profile = @user.create_profile(
+    name: "Original Name",
+    age: 25,
+    occupation: "Engineer",
+    hobbies: "Reading",
+    likes: "Coffee",
+    dislikes: "Noise"
+  )
+end
+
+Given(/^I am logged in as that user$/) do
+  visit login_path
+
+  if page.has_field?("Email")
+    fill_in "Email", with: @user.email
+  elsif page.has_field?("email")
+    fill_in "email", with: @user.email
+  end
+
+  if page.has_field?("Password")
+    fill_in "Password", with: "password123"
+  elsif page.has_field?("password")
+    fill_in "password", with: "password123"
+  end
+
+  # Try common login button labels, including "Log In"
+  logged_in = false
+  ["Log In", "Log in", "Login", "Sign in", "Sign In"].each do |btn|
+    if page.has_button?(btn)
+      click_button btn
+      logged_in = true
+      break
+    end
+  end
+
+  raise "Could not find login button" unless logged_in
+end
+
+
+When(/^I visit my profile edit page$/) do
+  raise "No @profile set" unless @profile
+  visit "/profiles/#{@profile.id}/edit"
+end
+
+Then(/^the profile should have the following attributes:$/) do |table|
+  expected = table.rows_hash
+  profile = Profile.find(@profile.id)
+
+  expected.each do |key, value|
+    key_norm = key.strip.downcase
+
+    unless profile.respond_to?(key_norm)
+      raise "Profile does not respond to attribute `#{key_norm}`"
+    end
+
+    if key_norm == "age"
+      expect(profile.age).to eq(value.to_i)
+    else
+      expect(profile.send(key_norm).to_s).to eq(value.to_s)
+    end
+  end
+end
+
+Then(/^I should see an age error message$/) do
+  # We at least stay on the edit page
+  expect(page).to have_content("Edit Profile")
+
+  # The profile's age in the database has not changed
+  @profile.reload
+  expect(@profile.age).to eq(25)
+
+  # And the invalid age is still visible in the form
+  expect(page).to have_field("Age", with: "-5")
+end
+
+Given(/^another user exists with a profile$/) do
+  @other_user = User.create!(
+    email: "otheruser@example.com",
+    password: "password123",
+    password_confirmation: "password123"
+  )
+
+  @other_profile = @other_user.create_profile(
+    name: "Other Name",
+    age: 30
+  )
+end
+
+When(/^I try to visit the other user's profile edit page$/) do
+  raise "No @other_profile set" unless @other_profile
+  visit "/profiles/#{@other_profile.id}/edit"
+end

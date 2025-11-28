@@ -12,12 +12,12 @@ Feature: Profile attributes on signup
       | password_confirmation | password123 |
     Then I click the edit profile button
     When I fill in the profile form with the following details:
-        | name       | Alice Example         |
-        | age        | 30                    |
-        | occupation | Software Engineer     |
-        | hobbies    | Hiking, Reading       |
-        | likes      | Coffee, Cats          |
-        | dislikes   | Spam, Loud Noises     |
+      | name       | Alice Example         |
+      | age        | 30                    |
+      | occupation | Software Engineer     |
+      | hobbies    | Hiking, Reading       |
+      | likes      | Coffee, Cats          |
+      | dislikes   | Spam, Loud Noises     |
     And I submit the profile form
     Then a profile should be created with the following attributes:
       | name       | Alice Example         |
@@ -26,3 +26,31 @@ Feature: Profile attributes on signup
       | hobbies    | Hiking, Reading       |
       | likes      | Coffee, Cats          |
       | dislikes   | Spam, Loud Noises     |
+
+  Scenario: Successfully update an existing profile
+    Given an existing user with a profile
+    And I am logged in as that user
+    When I visit my profile edit page
+    And I fill in the profile form with the following details:
+      | name   | Updated Name        |
+      | hobbies | Running, coding    |
+    And I submit the profile form
+    Then the profile should have the following attributes:
+      | name   | Updated Name        |
+      | hobbies | Running, coding    |
+
+  Scenario: Attempt to update profile with invalid age
+    Given an existing user with a profile
+    And I am logged in as that user
+    When I visit my profile edit page
+    And I fill in the profile form with the following details:
+      | age | -5 |
+    And I submit the profile form
+    Then I should see an age error message
+
+  Scenario: User cannot edit another user's profile
+    Given an existing user with a profile
+    And another user exists with a profile
+    And I am logged in as that user
+    When I try to visit the other user's profile edit page
+    Then I should see "You are not allowed to edit this profile."
