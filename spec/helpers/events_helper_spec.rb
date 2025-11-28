@@ -10,6 +10,10 @@ require 'rails_helper'
 #     end
 #   end
 # end
+
 RSpec.describe EventsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "formats an event date as YYYY-MM-DD" do
+    event = Event.new(date: Date.new(2025, 12, 25))
+    expect(helper.formatted_event_date(event)).to eq("2025-12-25")
+  end
 end
