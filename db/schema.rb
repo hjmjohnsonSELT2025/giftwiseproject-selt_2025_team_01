@@ -10,13 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_14_175555) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_27_133152) do
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.integer "age"
+    t.string "occupation"
+    t.text "hobbies"
+    t.text "likes"
+    t.text "dislikes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "recipients", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name"
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.string "relationship"
+    t.text "hobbies"
+    t.text "dislikes"
     t.index ["user_id"], name: "index_recipients_on_user_id"
   end
 
@@ -28,5 +44,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_14_175555) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "profiles", "users"
   add_foreign_key "recipients", "users"
 end

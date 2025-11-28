@@ -1,0 +1,35 @@
+<h1>Edit Profile</h1>
+
+<%= form_with model: @profile, local: true do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+
+  <div>
+    <%= f.label :occupation %><br>
+    <%= f.text_field :occupation %>
+  </div>
+
+  <div>
+    <%= f.label :hobbies %><br>
+    <%= f.text_area :hobbies %>
+  </div>
+
+  <div>
+    <%= f.label :likes %><br>
+    <%= f.text_area :likes %>
+  </div>
+
+  <div>
+    <%= f.label :dislikes %><br>
+    <%= f.text_area :dislikes %>
+  </div>
+
+  <%= f.submit "Save Profile" %>
+<% end %>

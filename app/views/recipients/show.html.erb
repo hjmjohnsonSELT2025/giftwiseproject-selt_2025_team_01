@@ -1,0 +1,15 @@
+<h1><%= @recipient.name %></h1>
+
+<p>
+  Age: <%= @recipient.age %><br>
+  Relationship: <%= @recipient.relationship %><br>
+  Hobbies: <%= @recipient.hobbies %><br>
+  Dislikes: <%= @recipient.dislikes %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_recipient_path(@recipient) %> |
+  <%= link_to "Delete", recipient_path(@recipient), method: :delete,
+              data: { turbo_method: :delete, confirm: "Are you sure?" } %> |
+  <%= link_to "Back to Recipients", recipients_path %>
+</p>

@@ -8,13 +8,21 @@ Feature: Manage Recipients
     And I am logged in as "user@example.com"
 
 
-  Scenario: Add a recipients with data
+  Scenario: Add a recipient with full information
     When I go to the recipients page
     And I click on "Add Recipient"
     And I fill in "Name" with "Mom"
+    And I fill in "Age" with "55"
+    And I fill in "Relationship" with "mother"
+    And I fill in "Hobbies" with "Cooking, Gardening"
+    And I fill in "Dislikes" with "Loud noise"
     And I press "Create Recipient"
     Then I should see "Recipient added"
     And I should see "Mom"
+    And I should see "55"
+    And I should see "mother"
+    And I should see "Cooking, Gardening"
+    And I should see "Loud noise"
 
 
   Scenario: Recipient information is permanently saved
@@ -25,7 +33,8 @@ Feature: Manage Recipients
 
   Scenario: Delete recipient profile
     Given a recipient exists with name "Mom" for user "user@example.com"
-    And I am on the recipients page
-    When I click "Delete" for recipient "Mom"
-    Then I should not see "Mom"
-    And I should see "Recipient deleted"
+    And I go to the recipients page
+    And I click on "Mom"
+    When I click on "Delete"
+    Then I should see "Recipient deleted"
+    And I should not see "Mom"
