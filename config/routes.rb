@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   resources :profiles, only: [:show, :edit, :update]
 
+  # events stuff
+  resources :events, only: [:index, :new, :create, :edit, :update, :destroy, :show]
 end

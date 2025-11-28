@@ -3,6 +3,7 @@
 <p>
   Logged in as <%= current_user.email %> |
   <%= link_to "View Profile", profile_path(current_user.profile) %> |
+  <%= link_to "View Events", events_path %> |
   <%= link_to "Log Out", logout_path, method: :delete, data: { turbo_method: :delete, confirm: "Are you sure you want to log out?" } %>
 </p>
 
