@@ -12,13 +12,21 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { message: "This Email is already in use" }
 
   # Enforces a minimum password complexity policy.
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, if: :should_validate_password?
 
   # [MODEL] Database Association.
   # Defines a one-to-many relationship: One User can have multiple Recipients.
+  # Define relationship, each recipient has one profile associated
   # 'dependent: :destroy' ensures that if a User is deleted,
   # all their associated Recipient records are automatically deleted from the database
   # to prevent orphaned data.
-  # recipient-related stuff
+  has_one :profile, dependent: :destroy
   has_many :recipients, dependent: :destroy
+
+  # Only validates password on:
+  # - User creation
+  # - Password update
+  def should_validate_password?
+    password.present? || new_record?
+  end
 end

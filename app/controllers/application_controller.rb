@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # Normally, methods defined in controllers are not visible to views (ERB files).
   # This helper bridges that gap, allowing us to check 'current_user' in any view.
   helper_method :current_user # makes it available in views too
+  before_action :ensure_profile_exists
 
   private
 
@@ -25,6 +26,25 @@ class ApplicationController < ActionController::Base
   # it interrupts the request and redirects the browser to the login page (View).
   def require_login
     redirect_to login_path unless session[:user_id]
+  end
+
+  # [CONTROLLER & MODEL] Ensures that a Profile exists for the current user.
+  # This method is called before every action in every controller to fix user accounts created
+  # before the Profile update.
+  # If the user is logged in but doesn't have a profile, it creates one with default values.
+  def ensure_profile_exists
+    return unless current_user # ignore if logged out
+
+    if current_user.profile.nil?
+      current_user.create_profile(
+        name: "New User",
+        age: nil,
+        occupation: "",
+        hobbies: "",
+        likes: "",
+        dislikes: ""
+      )
+    end
   end
 
 end

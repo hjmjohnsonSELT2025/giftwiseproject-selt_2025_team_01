@@ -9,7 +9,7 @@ Feature: User authentication
     And I fill in "Password" with "password"
     And I fill in "Password confirmation" with "password"
     And I press "Sign Up"
-    Then I should see "Welcome"
+    Then I should see "Edit Profile to get started!"
 
 
   Scenario: Logging in with valid credentials
