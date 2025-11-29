@@ -36,10 +36,6 @@
 
 .idea/
 
-# Ignore coverage and test reports
-/coverage/
-/spec/examples.txt
-
 # Ignore uploaded files in development
 /public/uploads/*
 !/public/uploads/.keep

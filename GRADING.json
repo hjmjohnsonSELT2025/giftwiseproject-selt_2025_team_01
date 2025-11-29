@@ -2,7 +2,7 @@
   "GROUP": "G001",
   "ALL_SPRINTS": {
     "SPRINT1_URL": "https://giftwise-10b0e357cd5b.herokuapp.com/",
-    "SPRINT2_URL": "http://blah.blee.boo/myapp",
+    "SPRINT2_URL": "https://giftwise-10b0e357cd5b.herokuapp.com/",
     "SPRINT3_URL": "http://blah.blee.boo/myapp",
     "FINAL_URL": "http://blah.blee.boo/myapp"
   }
