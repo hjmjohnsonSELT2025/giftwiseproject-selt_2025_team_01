@@ -58,6 +58,47 @@ class EventsController < ApplicationController
     # Rails will automatically render show.html.erb
   end
 
+  # ========================
+  # Recipient stuff below
+  # ========================
+
+  # [MODEL & CONTROLLER] Assigns a recipient to an event.
+  # POST /events/:id/add_recipient
+  # - Fetches the event owned by the current user.
+  # - Fetches the recipient owned by the current user.
+  # - Adds the recipient to the event unless already assigned.
+  # - Redirects back to the event show page.
+  #
+  # This action creates a new join table entry in event_recipients,
+  # enabling many-to-many assignment of recipients to events.
+  def add_recipient
+    @event = current_user.events.find(params[:id])
+    recipient = current_user.recipients.find(params[:recipient_id])
+
+    # Add recipient if not already associated
+    @event.recipients << recipient unless @event.recipients.include?(recipient)
+
+    redirect_to event_path(@event), notice: "Recipient added."
+  end
+
+  # [MODEL & CONTROLLER] Removes a recipient from an event.
+  # DELETE /events/:id/remove_recipient
+  # - Fetches the event owned by the current user.
+  # - Fetches the recipient owned by the current user.
+  # - Deletes the corresponding join table entry.
+  # - Redirects back to the event show page.
+  #
+  # This allows users to dynamically manage which recipients belong to
+  # which events without deleting the recipient itself.
+  def remove_recipient
+    @event = current_user.events.find(params[:id])
+    recipient = current_user.recipients.find(params[:recipient_id])
+
+    @event.recipients.delete(recipient)
+
+    redirect_to event_path(@event), notice: "Recipient removed."
+  end
+
   private
 
   # [MODEL] DRY helper method to fetch a specific Event belonging to the logged-in user.
