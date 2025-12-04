@@ -18,5 +18,10 @@ Rails.application.routes.draw do
   resources :profiles, only: [:show, :edit, :update]
 
   # events stuff
-  resources :events, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  resources :events do
+    member do
+      post 'add_recipient'
+      delete 'remove_recipient'
+    end
+  end
 end

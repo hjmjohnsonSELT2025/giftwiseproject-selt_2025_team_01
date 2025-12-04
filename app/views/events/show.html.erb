@@ -5,6 +5,29 @@
 <p>Description: <%= @event.description %></p>
 <p>Budget: <%= number_to_currency(@event.budget) if @event.budget %></p>
 
+<h2>Recipients for this Event</h2>
+<ul id="event-recipients">
+  <% @event.recipients.each do |r| %>
+    <li>
+      <%= r.name %>
+      <%= button_to "Remove", remove_recipient_event_path(@event, recipient_id: r.id),
+                    method: :delete,
+                    data: { confirm: "Remove #{r.name} from this event?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add a Recipient to Event</h2>
+<ul id="available-recipients">
+  <% (current_user.recipients - @event.recipients).each do |r| %>
+    <li>
+      <%= r.name %>
+      <%= button_to "Add", add_recipient_event_path(@event, recipient_id: r.id),
+                    method: :post %>
+    </li>
+  <% end %>
+</ul>
+
 <%= link_to "Edit", edit_event_path(@event) %> |
 <%= link_to "Delete", event_path(@event), data: { turbo_method: :delete } %> |
 <%= link_to "Back to Events", events_path %>
