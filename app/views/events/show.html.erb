@@ -6,7 +6,7 @@
 <p>Budget: <%= number_to_currency(@event.budget) if @event.budget %></p>
 
 <h2>Recipients for this Event</h2>
-<ul>
+<ul id="event-recipients">
   <% @event.recipients.each do |r| %>
     <li>
       <%= r.name %>
@@ -18,7 +18,7 @@
 </ul>
 
 <h2>Add a Recipient to Event</h2>
-<ul>
+<ul id="available-recipients">
   <% (current_user.recipients - @event.recipients).each do |r| %>
     <li>
       <%= r.name %>

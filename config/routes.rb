@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   resources :profiles, only: [:show, :edit, :update]
 
-  # adding/removing recipients from events
+  # events stuff
   resources :events do
     member do
       post 'add_recipient'
