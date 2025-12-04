@@ -31,5 +31,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -fa selt2025_sprint2 -m "Deployment of commit ${{ github.sha }}"    # update selt2025_sprintX to have the right value of X
-          git push origin selt2025_sprint2 --force    # update selt2025_sprintX to have the right value of X
+          git tag -fa selt2025_sprint3 -m "Deployment of commit ${{ github.sha }}"    # update selt2025_sprintX to have the right value of X
+          git push origin selt2025_sprint3 --force    # update selt2025_sprintX to have the right value of X
