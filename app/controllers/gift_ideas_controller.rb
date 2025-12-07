@@ -10,7 +10,7 @@ class GiftIdeasController < ApplicationController
   def create
     @gift_idea = @recipient.gift_ideas.build(gift_idea_params)
     if @gift_idea.save
-      redirect_to recipients_path, notice: "Gift idea added."
+      redirect_to @recipient, notice: "Gift idea was successfully created."
     else
       render :new, :status => :unprocessable_entity
     end
