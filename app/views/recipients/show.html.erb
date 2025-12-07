@@ -13,3 +13,29 @@
               data: { turbo_method: :delete, confirm: "Are you sure?" } %> |
   <%= link_to "Back to Recipients", recipients_path %>
 </p>
+
+<p>
+  <%= link_to "Add Gift Idea", new_recipient_gift_idea_path(@recipient) %>
+</p>
+
+<h2>Gift Ideas</h2>
+
+<% @recipient.gift_ideas.each do |idea| %>
+  <p>
+    <strong><%= idea.title %></strong>
+
+    <%= link_to "Delete",
+                recipient_gift_idea_path(@recipient, idea),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this gift idea?" } %>
+
+    <% if idea.url.present? %>
+      – <%= link_to "Link", idea.url, target: "_blank" %>
+    <% end %>
+
+    <% if idea.notes.present? %>
+      <br>
+      <em><%= idea.notes %></em>
+    <% end %>
+  </p>
+<% end %>
+
