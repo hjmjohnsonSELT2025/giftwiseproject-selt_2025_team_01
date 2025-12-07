@@ -1,0 +1,22 @@
+<h1>Add Gift Idea for <%= @recipient.name %></h1>
+
+<%= form_with model: [@recipient, @gift_idea] do |f| %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </p>
+
+  <p>
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </p>
+
+  <p><%= f.submit "Create Gift Idea" %></p>
+
+<% end %>
