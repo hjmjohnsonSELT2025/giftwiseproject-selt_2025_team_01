@@ -1,7 +1,7 @@
 class GiftIdeasController < ApplicationController
   before_action :require_login
   before_action :set_recipient
-  before_action :set_gift_idea, only: [:destroy]
+  before_action :set_gift_idea, only: [:edit, :update, :destroy]
 
   def new
     @gift_idea= @recipient.gift_ideas.build
@@ -13,6 +13,17 @@ class GiftIdeasController < ApplicationController
       redirect_to @recipient, notice: "Gift idea was successfully created."
     else
       render :new, :status => :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @gift_idea.update(gift_idea_params)
+      redirect_to recipient_path(@recipient), notice: "Gift idea was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -55,6 +55,15 @@ Feature: Add Gift Ideas
     Then I should see "Gift idea was successfully created"
     And I should see a link to "https://amazon.com/watch"
 
+  Scenario: Deleting a gift idea
+    Given "Mom" has the following gift ideas:
+      | title          | notes                    |
+      | Spa Package    | Relaxing spa day         |
+    When I view the gift ideas page for "Mom"
+    When I click "Delete" for "Spa Package"
+    Then I should not see "Spa Package"
+
+
   Scenario: View all gift ideas for a recipient
     Given "Mom" has the following gift ideas:
       | title          | notes                    |
@@ -65,3 +74,41 @@ Feature: Add Gift Ideas
     Then I should see "Spa Package"
     And I should see "Book Set"
     And I should see "Garden Tools"
+
+    Scenario: Successfully edit a gift idea with
+      Given "Mom" has the following gift ideas:
+        | title          | notes                    |
+        | Spa Package    | Relaxing spa day         |
+      When I view the gift ideas page for "Mom"
+      When I click "Edit" for "Spa Package"
+      When I fill in "Title" with "Deluxe Spa Package"
+      When I fill in "Notes" with "1/02/26"
+      And I press "Update Gift Idea"
+      Then I should see "Gift idea was successfully updated."
+      And I should see "Deluxe Spa Package"
+      And I should see "1/02/26"
+
+
+    Scenario: Fails to update with blank title
+      Given "Mom" has the following gift ideas:
+        | title          | notes                    |
+        | Spa Package    | Relaxing spa day         |
+      When I view the gift ideas page for "Mom"
+      When I click "Edit" for "Spa Package"
+      When I fill in "Title" with ""
+      And I press "Update Gift Idea"
+      Then I should not see "Gift idea was successfully updated."
+
+
+    Scenario: Backing out with filled out edit fields
+      Given "Mom" has the following gift ideas:
+        | title          | notes                    |
+        | Spa Package    | Relaxing spa day         |
+      When I view the gift ideas page for "Mom"
+      When I click "Edit" for "Spa Package"
+      When I fill in "Title" with "Deluxe Spa Package"
+      When I fill in "Notes" with "1/02/26"
+      And I click on "Back to Recipient"
+      Then I should see "Spa Package"
+      And I should see "Relaxing spa day"
+

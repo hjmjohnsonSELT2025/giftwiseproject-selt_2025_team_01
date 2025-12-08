@@ -24,6 +24,7 @@
   <p>
     <strong><%= idea.title %></strong>
 
+    <%= link_to "Edit", edit_recipient_gift_idea_path(@recipient, idea) %>
     <%= link_to "Delete",
                 recipient_gift_idea_path(@recipient, idea),
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this gift idea?" } %>
