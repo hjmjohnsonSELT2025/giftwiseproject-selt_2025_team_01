@@ -55,3 +55,13 @@
 /config/database.yml
 *.sql
 *.dump
+
+# Ignore the folder named .gem_rbs_collection anywhere in the repository
+.gem_rbs_collection/
+
+# Ignore .lock.yaml and .yaml files in the rbs_collection directory structure
+# This assumes the rbs_collection directory is at a predictable level,
+# and ignores any .lock.yaml or .yaml that matches the pattern.
+# The double asterisk (**) matches directories recursively.
+**/rbs_collection/**/*.lock.yaml
+**/rbs_collection/**/*.yaml
