@@ -7,6 +7,11 @@ class GiftIdeasController < ApplicationController
     @gift_idea= @recipient.gift_ideas.build
   end
 
+  def suggest
+    suggestion = generate_ai_suggestion(@recipient)
+    render json: suggestion
+  end
+
   def create
     @gift_idea = @recipient.gift_ideas.build(gift_idea_params)
     if @gift_idea.save
@@ -46,5 +51,22 @@ class GiftIdeasController < ApplicationController
     params.require(:gift_idea).permit(:title, :notes, :url)
   end
 
+  def generate_ai_suggestion(recipient)
+    # Build a prompt based on recipient's profile
+    profile_info = []
+    profile_info << "Name: #{recipient.name}"
+    profile_info << "Age: #{recipient.age}" if recipient.age.present?
+    profile_info << "Relationship: #{recipient.relationship}" if recipient.relationship.present?
+    profile_info << "Hobbies: #{recipient.hobbies}" if recipient.hobbies.present?
+    profile_info << "Dislikes: #{recipient.dislikes}" if recipient.dislikes.present?
+
+    # For now, return a placeholder. You'll need to integrate with an AI API like OpenAI
+    # Example: Use OpenAI's API, Anthropic's Claude, or another service
+    {
+      title: "AI-suggested gift for #{recipient.name}",
+      notes: "Based on their profile: #{profile_info.join(', ')}. Consider their interests and preferences.",
+      url: ""
+    }
+  end
 
 end
