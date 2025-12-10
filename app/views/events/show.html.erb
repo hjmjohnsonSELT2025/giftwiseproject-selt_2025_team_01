@@ -26,8 +26,7 @@
               <%= gift.title %>
               <%= link_to "Edit", edit_event_recipient_gift_idea_path(@event, r, gift) %> |
               <%= link_to "Delete", event_recipient_gift_idea_path(@event, r, gift),
-                          method: :delete,
-                          data: { confirm: "Delete this gift idea?" } %>
+                          data: { turbo_method: :delete, confirm: "Delete this gift idea?" } %>
               <% if gift.url.present? %>
                 | <%= link_to "Link", gift.url, target: "_blank" %>
               <% end %>
