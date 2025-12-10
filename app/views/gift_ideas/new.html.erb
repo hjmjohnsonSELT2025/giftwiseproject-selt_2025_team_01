@@ -1,43 +1,5 @@
 <h1>Add Gift Idea for <%= @recipient.name %></h1>
 
-<%= form_with model: [@recipient, @gift_idea], data: { controller: "gift-idea" } do |f| %>
-
-  <% if @gift_idea.errors.any? %>
-    <div style="color: red;">
-      <h2><%= pluralize(@gift_idea.errors.count, "error") %> prohibited this gift idea from being saved:</h2>
-      <ul>
-        <% @gift_idea.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title, data: { gift_idea_target: "title" } %>
-  </p>
-
-  <p>
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes, data: { gift_idea_target: "notes" } %>
-  </p>
-
-  <p>
-    <%= f.label :url, "URL" %><br>
-    <%= f.text_field :url, data: { gift_idea_target: "url" } %>
-  </p>
-
-  <p>
-    <%= f.submit "Create Gift Idea" %>
-
-    <button type="button"
-            data-gift-idea-target="generateButton"
-            data-action="click->gift-idea#generateSuggestion">
-      AI Gift Idea
-    </button>
-  </p>
-
-<% end %>
+<%= render "form", gift_idea: @gift_idea, submit_label: "Create Gift Idea" %>
 
 <%= link_to "Back to Recipients", recipients_path %>
