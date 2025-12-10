@@ -1,0 +1,5 @@
+<h1>Edit Gift for <%= @event_recipient.recipient.name %> in <%= @event_recipient.event.name %></h1>
+
+<%= render "event_recipient_gift_form", gift_idea: @gift_idea, url: event_recipient_gift_idea_path(@event_recipient.event, @event_recipient.recipient, @gift_idea), submit_label: "Update Gift" %>
+
+<%= link_to "Back to Event", event_path(@event_recipient.event) %>
