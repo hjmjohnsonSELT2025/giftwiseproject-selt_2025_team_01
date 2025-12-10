@@ -25,5 +25,10 @@ Rails.application.routes.draw do
       post 'add_recipient'
       delete 'remove_recipient'
     end
+
+    # event-specific gifts
+    resources :recipients, only: [] do
+      resources :gift_ideas, controller: "event_recipient_gift_ideas"
+    end
   end
 end
