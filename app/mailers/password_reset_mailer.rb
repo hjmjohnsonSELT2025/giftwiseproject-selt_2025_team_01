@@ -1,14 +1,15 @@
 class PasswordResetMailer < ApplicationMailer
   def reset_email
-    user  = params[:user]
-    token = params[:token]
+    # Instance variable so the view can use @user
+    @user  = params[:user]
+    token  = params[:token]
 
-    # This is only used in the email body, not headers
+    # Used in the view for the reset link
     @reset_url = edit_password_reset_url(token)
 
-    # Headers: ALL single-line, simple strings
+    # Headers: single-line, sanitized
     mail(
-      to: user.email.to_s.strip,
+      to: @user.email.to_s.strip,
       subject: "Reset your GiftWise password"
     )
   end
