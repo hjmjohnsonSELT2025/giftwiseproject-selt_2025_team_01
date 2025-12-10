@@ -23,11 +23,14 @@ class PasswordResetsController < ApplicationController
   def edit
     @user = User.find_by(reset_password_token: params[:id])
 
+    Rails.logger.info "DEBUG PASSWORD RESET: token=#{params[:id]} user_id=#{@user&.id}"
+
     if @user.nil?
       flash[:alert] = "This reset link is invalid. Please request a new one."
       redirect_to new_password_reset_path
       return
     end
+
 
     # Temporarily ignore expiry for debugging:
     # if @user.reset_password_token_expired?
