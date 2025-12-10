@@ -1,33 +1,39 @@
 class PasswordResetsController < ApplicationController
-  # Allow these actions without being logged in
   skip_before_action :require_login, only: %i[new create edit update]
 
-  # Show "Forgot your password?" form
   def new
   end
 
-  # Handle email submit – send reset email if user exists
   def create
     if (user = User.find_by(email: params[:email]))
       token = user.generate_reset_password_token!
       PasswordResetMailer.with(user: user, token: token).reset_email.deliver_now
     end
 
-    # Always respond the same, so we don't leak which emails exist
     redirect_to login_path, notice: "If that email exists, you'll receive a reset link shortly."
   end
 
-  # Show "Reset your password" form when user clicks email link
   def edit
     @user = User.find_by(reset_password_token: params[:id])
 
-    if @user.nil? || @user.reset_password_token_expired?
+    if @user.nil?
+      # Don’t silently redirect – show a clear error
       redirect_to new_password_reset_path,
-                  alert: "This reset link is invalid or has expired. Please request a new one."
+                  alert: "This reset link is invalid. Please request a new one."
+      return
     end
+
+    # If you want to enforce expiry, keep this block.
+    if @user.reset_password_token_expired?
+      redirect_to new_password_reset_path,
+                  alert: "This reset link has expired. Please request a new one."
+      return
+    end
+
+    # If we reach here, @user exists and token is valid.
+    # Rails will render app/views/password_resets/edit.html.erb
   end
 
-  # Process the submitted new password
   def update
     @user = User.find_by(reset_password_token: params[:id])
 
@@ -50,7 +56,7 @@ class PasswordResetsController < ApplicationController
     end
 
     if @user.reset_password!(new_password)
-      # Auto log in the user after password reset
+      # auto log in
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Your password has been updated and you are now logged in."
     else
