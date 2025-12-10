@@ -7,7 +7,7 @@ class Event < ApplicationRecord
   # Uses the EventRecipient join table to associate multiple Recipients to an Event.
   # 'has_many :event_recipients' gives access to the join table records for this event.
   # 'has_many :recipients, through: :event_recipients' allows direct access to the associated recipients.
-  has_many :event_recipients
+  has_many :event_recipients, dependent: :destroy
   has_many :recipients, through: :event_recipients
 
   # [MODEL] Data Validations
