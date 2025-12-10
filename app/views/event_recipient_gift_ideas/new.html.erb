@@ -1,5 +1,5 @@
 <h1>Add Gift for <%= @event_recipient.recipient.name %> in <%= @event_recipient.event.name %></h1>
 
-<%= render "gift_ideas/form", gift_idea: @gift_idea, url: event_recipient_gift_ideas_path(@event_recipient), submit_label: "Create Gift" %>
+<%= render "event_recipient_gift_form", gift_idea: @gift_idea, url: event_recipient_gift_ideas_path(@event_recipient.event, @event_recipient.recipient), submit_label: "Create Gift" %>
 
 <%= link_to "Back to Event", event_path(@event_recipient.event) %>
