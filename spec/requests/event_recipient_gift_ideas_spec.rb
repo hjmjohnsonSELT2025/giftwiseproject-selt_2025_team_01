@@ -43,11 +43,10 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
       expect(response).to redirect_to(login_path)
     end
 
-    it "returns success when logged in" do
+    it "redirects to the event show page when logged in" do
       log_in_as(user)
       get event_recipient_gift_ideas_path(event, recipient)
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Mom")
+      expect(response).to redirect_to(event_path(event))
     end
   end
 
@@ -108,7 +107,7 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
       expect {
         delete event_recipient_gift_idea_path(event, recipient, gift)
       }.to change(EventRecipientGiftIdea, :count).by(-1)
-      expect(response).to redirect_to(event_recipient_gift_ideas_path(event, recipient))
+      expect(response).to redirect_to(event_path(event))
     end
   end
 

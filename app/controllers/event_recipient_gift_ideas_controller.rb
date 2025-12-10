@@ -8,6 +8,7 @@ class EventRecipientGiftIdeasController < ApplicationController
   # GET /events/:event_id/recipients/:recipient_id/gift_ideas
   def index
     @gift_ideas = @event_recipient.event_recipient_gift_ideas
+    redirect_to event_path(@event)
   end
 
   # GET /events/:event_id/recipients/:recipient_id/gift_ideas/new
