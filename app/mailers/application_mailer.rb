@@ -1,4 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "teamonegiftwisenotif@gmail.com"
+  # This MUST be a single-line string with no hidden newlines.
+  # Use the exact email address you verified in SendGrid.
+  default from: "sniper55.awsome+giftwise@gmail.com"
+
   layout "mailer"
 end
