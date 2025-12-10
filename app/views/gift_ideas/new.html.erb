@@ -1,6 +1,6 @@
 <h1>Add Gift Idea for <%= @recipient.name %></h1>
 
-<%= form_with model: [@recipient, @gift_idea] do |f| %>
+<%= form_with model: [@recipient, @gift_idea], data: { controller: "gift-idea" } do |f| %>
 
   <% if @gift_idea.errors.any? %>
     <div style="color: red;">
@@ -15,23 +15,27 @@
 
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, data: { gift_idea_target: "title" } %>
   </p>
 
   <p>
     <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, data: { gift_idea_target: "notes" } %>
   </p>
 
   <p>
     <%= f.label :url, "URL" %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, data: { gift_idea_target: "url" } %>
   </p>
 
   <p>
     <%= f.submit "Create Gift Idea" %>
 
-    <button type="button" id="generate-ai-button">AI Gift</button>
+    <button type="button"
+            data-gift-idea-target="generateButton"
+            data-action="click->gift-idea#generateSuggestion">
+      AI Gift Idea
+    </button>
   </p>
 
 <% end %>
