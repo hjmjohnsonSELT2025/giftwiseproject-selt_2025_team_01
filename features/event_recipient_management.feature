@@ -36,3 +36,12 @@ Feature: Manage event recipients
     Then I should see "Bob"
     And I should see "Alice" in the event recipients list
     And I should not see "Alice" in the available recipients list
+
+  Scenario: Delete an event that already has recipients
+    Given a recipient exists with name "Alice" for user "user@example.com"
+    And an event named "Holiday Dinner" on "2025-12-20" for user "user@example.com"
+    And "Alice" is added to the event "Holiday Dinner"
+    When I visit the event page for "Holiday Dinner"
+    And I click on "Delete"
+    Then I should see "Event deleted"
+    And I should not see "Holiday Dinner"

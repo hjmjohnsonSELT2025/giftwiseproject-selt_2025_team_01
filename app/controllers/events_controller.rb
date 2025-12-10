@@ -94,7 +94,9 @@ class EventsController < ApplicationController
     @event = current_user.events.find(params[:id])
     recipient = current_user.recipients.find(params[:recipient_id])
 
-    @event.recipients.delete(recipient)
+    # Find the join record and destroy it to trigger dependent: :destroy
+    event_recipient = @event.event_recipients.find_by(recipient_id: recipient.id)
+    event_recipient.destroy if event_recipient
 
     redirect_to event_path(@event), notice: "Recipient removed."
   end

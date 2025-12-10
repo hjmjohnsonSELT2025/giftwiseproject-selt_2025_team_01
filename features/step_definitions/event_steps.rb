@@ -55,3 +55,25 @@ Then(/^I should (not )?see "([^"]*)" in the available recipients list$/) do |neg
     end
   end
 end
+
+When('I remove {string} from {string}') do |recipient_name, event_name|
+  user = User.find_by!(email: 'user@example.com')
+  event = Event.find_by!(name: event_name, user: user)
+  recipient = Recipient.find_by!(name: recipient_name, user: user)
+
+  visit event_path(event)
+  within("#event-recipients") do
+    li = find('li', text: recipient.name)
+    li.click_button('Remove')
+  end
+end
+
+# Making sure a recipient is NOT in an event (check the event DB for this)
+Then('the recipient {string} should no longer be in {string}') do |recipient_name, event_name|
+  user = User.find_by!(email: 'user@example.com')
+  event = Event.find_by!(name: event_name, user: user)
+  recipient = Recipient.find_by!(name: recipient_name, user: user)
+
+  expect(EventRecipient.exists?(event: event, recipient: recipient)).to be false
+end
+
