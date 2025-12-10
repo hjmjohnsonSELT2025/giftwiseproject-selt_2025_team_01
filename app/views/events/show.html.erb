@@ -5,14 +5,36 @@
 <p>Description: <%= @event.description %></p>
 <p>Budget: <%= number_to_currency(@event.budget) if @event.budget %></p>
 
-<h2>Recipients for this Event</h2>
+<h2>Your Recipients</h2>
 <ul id="event-recipients">
   <% @event.recipients.each do |r| %>
+    <% event_recipient = r.event_recipient_for(@event) %>
     <li>
-      <%= r.name %>
+      <strong><%= r.name %></strong>
       <%= button_to "Remove", remove_recipient_event_path(@event, recipient_id: r.id),
                     method: :delete,
                     data: { confirm: "Remove #{r.name} from this event?" } %>
+
+      <!-- First, have link to add new gifts -->
+      <div style="margin-left: 20px;">
+        <%= link_to "Add Gift", new_event_recipient_gift_idea_path(@event, r) %>
+
+        <!-- List existing event-specific gifts -->
+        <ul>
+          <% event_recipient.event_recipient_gift_ideas.each do |gift| %>
+            <li>
+              <%= gift.title %>
+              <%= link_to "Edit", edit_event_recipient_gift_idea_path(@event, r, gift) %> |
+              <%= link_to "Delete", event_recipient_gift_idea_path(@event, r, gift),
+                          method: :delete,
+                          data: { confirm: "Delete this gift idea?" } %>
+              <% if gift.url.present? %>
+                | <%= link_to "Link", gift.url, target: "_blank" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </li>
   <% end %>
 </ul>

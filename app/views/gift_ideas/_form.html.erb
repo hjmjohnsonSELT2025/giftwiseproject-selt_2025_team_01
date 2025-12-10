@@ -1,4 +1,4 @@
-<%= form_with model: [parent, @gift_idea] do |f| %>
+<%= form_with model: gift_idea, url: url do |f| %>
 
   <% if @gift_idea.errors.any? %>
     <div style="color: red;">

@@ -1,116 +1,80 @@
-class EventsController < ApplicationController
-  # [CONTROLLER] Ensure the user is logged in before accessing any event actions.
+class EventRecipientGiftIdeasController < ApplicationController
   before_action :require_login
+  before_action :set_event
+  before_action :set_recipient
+  before_action :set_event_recipient
+  before_action :set_gift_idea, only: [:edit, :update, :destroy]
 
-  # [MODEL] Fetches the Event instance for certain actions to avoid repeating code.
-  # Ensures users can only edit/update/destroy/show their own events.
-  before_action :set_event, only: [:edit, :update, :destroy, :show]
-
-  # [MODEL & VIEW] Lists all events belonging to the current user.
-  # Passes @events to the index view for iteration and display.
+  # GET /events/:event_id/recipients/:recipient_id/gift_ideas
   def index
-    @events = current_user.events
+    @gift_ideas = @event_recipient.event_recipient_gift_ideas
   end
 
-  # [MODEL & VIEW] Prepares a new Event instance for the 'new' form.
-  # Scoped to current_user to automatically assign user_id when saving.
+  # GET /events/:event_id/recipients/:recipient_id/gift_ideas/new
   def new
-    @event = current_user.events.build
+    @gift_idea = @event_recipient.event_recipient_gift_ideas.new
   end
 
-  # [MODEL & CONTROLLER] Processes form submission to create a new Event.
-  # 1. Builds a new Event with permitted params.
-  # 2. Saves it to the database.
-  # 3. Redirects to index on success, or re-renders 'new' view if validation fails.
+  # POST /events/:event_id/recipients/:recipient_id/gift_ideas
   def create
-    @event = current_user.events.build(event_params)
-    if @event.save
-      redirect_to events_path, notice: 'Event created!'
+    @gift_idea = @event_recipient.event_recipient_gift_ideas.new(gift_idea_params)
+
+    if @gift_idea.save
+      flash[:notice] = "Gift idea created."
+      redirect_to event_recipient_gift_ideas_path(@event, @recipient)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # [VIEW] Prepares the edit form for an existing event.
-  # @event is set by set_event before_action.
-  def edit; end
+  # GET /events/:event_id/recipients/:recipient_id/gift_ideas/:id/edit
+  def edit
+  end
 
-  # [MODEL & CONTROLLER] Updates an existing Event.
-  # If validations pass, redirects to the index; otherwise, re-renders the edit form.
+  # PATCH/PUT /events/:event_id/recipients/:recipient_id/gift_ideas/:id
   def update
-    if @event.update(event_params)
-      redirect_to events_path, notice: 'Event updated!'
+    if @gift_idea.update(gift_idea_params)
+      flash[:notice] = "Gift idea updated."
+      redirect_to event_recipient_gift_ideas_path(@event, @recipient)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # [MODEL & CONTROLLER] Deletes an existing Event.
-  # Redirects to the events index after deletion.
+  # DELETE /events/:event_id/recipients/:recipient_id/gift_ideas/:id
   def destroy
-    @event.destroy
-    redirect_to events_path, notice: 'Event deleted'
-  end
-
-  # [VIEW] Shows a single Event (optional for now).
-  # Uses @event set in set_event.
-  def show
-    # Rails will automatically render show.html.erb
-  end
-
-  # ========================
-  # Recipient stuff below
-  # ========================
-
-  # [MODEL & CONTROLLER] Assigns a recipient to an event.
-  # POST /events/:id/add_recipient
-  # - Fetches the event owned by the current user.
-  # - Fetches the recipient owned by the current user.
-  # - Adds the recipient to the event unless already assigned.
-  # - Redirects back to the event show page.
-  #
-  # This action creates a new join table entry in event_recipients,
-  # enabling many-to-many assignment of recipients to events.
-  def add_recipient
-    @event = current_user.events.find(params[:id])
-    recipient = current_user.recipients.find(params[:recipient_id])
-
-    # Add recipient if not already associated
-    @event.recipients << recipient unless @event.recipients.include?(recipient)
-
-    redirect_to event_path(@event), notice: "Recipient added."
-  end
-
-  # [MODEL & CONTROLLER] Removes a recipient from an event.
-  # DELETE /events/:id/remove_recipient
-  # - Fetches the event owned by the current user.
-  # - Fetches the recipient owned by the current user.
-  # - Deletes the corresponding join table entry.
-  # - Redirects back to the event show page.
-  #
-  # This allows users to dynamically manage which recipients belong to
-  # which events without deleting the recipient itself.
-  def remove_recipient
-    @event = current_user.events.find(params[:id])
-    recipient = current_user.recipients.find(params[:recipient_id])
-
-    @event.recipients.delete(recipient)
-
-    redirect_to event_path(@event), notice: "Recipient removed."
+    @gift_idea.destroy
+    flash[:notice] = "Gift idea deleted."
+    redirect_to event_recipient_gift_ideas_path(@event, @recipient)
   end
 
   private
 
-  # [MODEL] DRY helper method to fetch a specific Event belonging to the logged-in user.
-  # Prevents access to events owned by other users (security).
   def set_event
-    @event = current_user.events.find_by(id: params[:id])
-    redirect_to events_path, alert: 'Event not found' unless @event
+    @event = current_user.events.find_by(id: params[:event_id])
+    redirect_to events_path, alert: "Event not found." unless @event
   end
 
-  # [CONTROLLER] Strong parameters for mass assignment protection.
-  # Only allows safe attributes to be written to the database.
-  def event_params
-    params.require(:event).permit(:name, :date, :description, :theme, :budget)
+  def set_recipient
+    @recipient = current_user.recipients.find_by(id: params[:recipient_id])
+    redirect_to event_path(@event), alert: "Recipient not found." unless @recipient
+  end
+
+  def set_event_recipient
+    @event_recipient = EventRecipient.find_by(event: @event, recipient: @recipient)
+    redirect_to event_path(@event), alert: "Recipient is not part of this event." unless @event_recipient
+  end
+
+  def set_gift_idea
+    @gift_idea = @event_recipient.event_recipient_gift_ideas.find_by(id: params[:id])
+    redirect_to event_recipient_gift_ideas_path(@event, @recipient), alert: "Gift idea not found." unless @gift_idea
+  end
+
+  def gift_idea_params
+    params.require(:event_recipient_gift_idea).permit(:title, :notes, :url)
+  end
+
+  def require_login
+    redirect_to login_path unless current_user
   end
 end
