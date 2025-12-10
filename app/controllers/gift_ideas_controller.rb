@@ -60,13 +60,12 @@ class GiftIdeasController < ApplicationController
     profile_info << "Hobbies: #{recipient.hobbies}" if recipient.hobbies.present?
     profile_info << "Dislikes: #{recipient.dislikes}" if recipient.dislikes.present?
 
-    # For now, return a placeholder. You'll need to integrate with an AI API like OpenAI
-    # Example: Use OpenAI's API, Anthropic's Claude, or another service
-    {
-      title: "AI-suggested gift for #{recipient.name}",
-      notes: "Based on their profile: #{profile_info.join(', ')}. Consider their interests and preferences.",
-      url: ""
-    }
+    prompt_message = "Please suggest a gift idea for a person with the following profile. The suggestion must include
+                      a URL to a relevant product.\n\n"
+    # adds the prompt message and the profile info into one
+    prompt_message += profile_info.join("\n")
+
+    ChatService.new(message: prompt_message).call
   end
 
 end

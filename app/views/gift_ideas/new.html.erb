@@ -30,55 +30,10 @@
 
   <p>
     <%= f.submit "Create Gift Idea" %>
-    <%= button_tag "AI Suggest", type: "button", id: "ai-suggest-btn", data: { recipient_id: @recipient.id } %>
+
+    <button type="button" id="generate-ai-button">AI Gift</button>
   </p>
 
 <% end %>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const aiBtn = document.getElementById('ai-suggest-btn');
-
-  aiBtn.addEventListener('click', function() {
-    const recipientId = this.dataset.recipientId;
-    const originalText = this.textContent;
-
-    // Disable button and show loading state
-    this.disabled = true;
-    this.textContent = 'Generating...';
-
-    // Fetch AI suggestion
-    fetch(`/recipients/${recipientId}/gift_ideas/suggest`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Received data:', data);
-
-        // Populate form fields using name selectors
-        const titleField = document.querySelector('input[name="gift_idea[title]"]');
-        const notesField = document.querySelector('textarea[name="gift_idea[notes]"]');
-        const urlField = document.querySelector('input[name="gift_idea[url]"]');
-
-        if (titleField) titleField.value = data.title;
-        if (notesField) notesField.value = data.notes;
-        if (urlField) urlField.value = data.url;
-
-        // Re-enable button
-        this.disabled = false;
-        this.textContent = originalText;
-      })
-      .catch(error => {
-        console.error('Error fetching AI suggestion:', error);
-        alert('Failed to generate AI suggestion. Please try again.');
-        this.disabled = false;
-        this.textContent = originalText;
-      });
-  });
-});
-</script>
 
 <%= link_to "Back to Recipients", recipients_path %>

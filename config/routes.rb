@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show] do
     resources :gift_ideas, only: [:new, :create, :destroy, :edit, :update] do
       collection do
-        get 'suggest'
+        get :suggest
       end
     end
   end
