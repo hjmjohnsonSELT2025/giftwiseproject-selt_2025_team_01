@@ -1,9 +1,14 @@
 class PasswordResetsController < ApplicationController
+  # Let anyone access password reset flow
   skip_before_action :require_login, only: %i[new create edit update]
 
+  # GET /password_resets/new
+  # "Forgot your password?" page
   def new
   end
 
+  # POST /password_resets
+  # Handle email form, send reset link if user exists
   def create
     if (user = User.find_by(email: params[:email]))
       token = user.generate_reset_password_token!
@@ -13,27 +18,28 @@ class PasswordResetsController < ApplicationController
     redirect_to login_path, notice: "If that email exists, you'll receive a reset link shortly."
   end
 
+  # GET /password_resets/:id/edit
+  # Show "enter new password" form
   def edit
     @user = User.find_by(reset_password_token: params[:id])
 
     if @user.nil?
-      # Don’t silently redirect – show a clear error
-      redirect_to new_password_reset_path,
-                  alert: "This reset link is invalid. Please request a new one."
+      flash[:alert] = "This reset link is invalid. Please request a new one."
+      redirect_to new_password_reset_path
       return
     end
 
-    # If you want to enforce expiry, keep this block.
-    if @user.reset_password_token_expired?
-      redirect_to new_password_reset_path,
-                  alert: "This reset link has expired. Please request a new one."
-      return
-    end
+    # Temporarily ignore expiry for debugging:
+    # if @user.reset_password_token_expired?
+    #   flash[:alert] = "This reset link has expired. Please request a new one."
+    #   redirect_to new_password_reset_path
+    #   return
+    # end
 
-    # If we reach here, @user exists and token is valid.
-    # Rails will render app/views/password_resets/edit.html.erb
+    # If we get here, @user is set and we will render app/views/password_resets/edit.html.erb
   end
 
+  # PATCH /password_resets/:id
   def update
     @user = User.find_by(reset_password_token: params[:id])
 
@@ -42,10 +48,11 @@ class PasswordResetsController < ApplicationController
       return
     end
 
-    if @user.reset_password_token_expired?
-      redirect_to new_password_reset_path, alert: "This reset link has expired. Please request a new one."
-      return
-    end
+    # Temporarily ignore expiry while debugging:
+    # if @user.reset_password_token_expired?
+    #   redirect_to new_password_reset_path, alert: "This reset link has expired. Please request a new one."
+    #   return
+    # end
 
     new_password = params.dig(:user, :password)
 
@@ -56,7 +63,6 @@ class PasswordResetsController < ApplicationController
     end
 
     if @user.reset_password!(new_password)
-      # auto log in
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Your password has been updated and you are now logged in."
     else

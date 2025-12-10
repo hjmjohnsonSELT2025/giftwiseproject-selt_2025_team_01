@@ -43,9 +43,9 @@ class User < ApplicationRecord
     token
   end
 
+  # For now, never expire (we can tighten later)
   def reset_password_token_expired?
     false
-    #reset_password_sent_at.nil? || reset_password_sent_at < RESET_PASSWORD_EXPIRATION.ago
   end
 
   def reset_password!(new_password)

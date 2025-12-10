@@ -1,5 +1,9 @@
 <h1>Reset your password</h1>
 
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
 <%= form_with model: @user,
               url: password_reset_path(params[:id]),
               method: :patch,
@@ -10,11 +14,7 @@
     <%= f.password_field :password %>
   </div>
 
-  <div>
+  <div style="margin-top: 1rem;">
     <%= f.submit "Update password" %>
   </div>
-<% end %>
-
-<% if flash[:alert] %>
-  <p style="color: red;"><%= flash[:alert] %></p>
 <% end %>
