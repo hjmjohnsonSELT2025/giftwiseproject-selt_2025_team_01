@@ -24,10 +24,37 @@ class User < ApplicationRecord
   has_many :recipients, dependent: :destroy
   has_many :events, dependent: :destroy
 
+  RESET_PASSWORD_EXPIRATION = 2.hours #We can change this later
   # Only validates password on:
   # - User creation
   # - Password update
   def should_validate_password?
     password.present? || new_record?
+  end
+
+  #RESET PASSWORD HELPERS
+  def generate_reset_password_token!
+    token = SecureRandom.urlsafe_base64(32) #generating random token
+
+    update!(
+      reset_password_token: token,
+      reset_password_sent_at: Time.current
+    )
+
+    token
+  end
+
+  # Returns true if the reset token is missing or older than the expiration window.
+  def reset_password_token_expired?
+    reset_password_sent_at.nil? ||
+      reset_password_sent_at < RESET_PASSWORD_EXPIRATION.ago
+  end
+
+  # Updates the user's password and clears the reset token fields.
+  def reset_password!(new_password)
+    self.password = new_password
+    self.reset_password_token = nil
+    self.reset_password_sent_at = nil
+    save!
   end
 end
