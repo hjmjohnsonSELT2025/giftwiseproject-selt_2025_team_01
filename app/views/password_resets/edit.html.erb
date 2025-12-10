@@ -1,4 +1,4 @@
-<h1>Choose a new password</h1>
+<h1>Reset your password</h1>
 
 <%= form_with model: @user,
               url: password_reset_path(params[:id]),
@@ -6,7 +6,7 @@
               local: true do |f| %>
 
   <div>
-    <%= f.label :password %>
+    <%= f.label :password, "New password" %><br>
     <%= f.password_field :password %>
   </div>
 
@@ -15,10 +15,6 @@
   </div>
 <% end %>
 
-<p>
-  <%= link_to "Back to login", login_path %>
-</p>
-
 <% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
+  <p style="color: red;"><%= flash[:alert] %></p>
 <% end %>

@@ -52,9 +52,10 @@ class User < ApplicationRecord
 
   # Updates the user's password and clears the reset token fields.
   def reset_password!(new_password)
-    self.password = new_password
-    self.reset_password_token = nil
+    self.password              = new_password
+    self.password_confirmation = new_password
+    self.reset_password_token  = nil
     self.reset_password_sent_at = nil
-    save!
+    save
   end
 end
