@@ -109,3 +109,11 @@ Feature: Add Gift Ideas for Event Recipients
     And I click on "Back to Event"
     Then I should see "Spa Package"
     And I should see "Relaxing spa day"
+
+  Scenario: Remove a recipient with gifts
+    Given "Mom" has the following gift ideas in "Birthday Party":
+      | title      | notes                | url |
+      | Spa Package | Relaxing spa day    |     |
+    When I remove "Mom" from "Birthday Party"
+    Then the recipient "Mom" should no longer be in "Birthday Party"
+    And I should not see "Spa Package"
