@@ -1,4 +1,5 @@
 # Video walkthrough: https://www.youtube.com/watch?v=DTHCa6P_ZLE
+# Github used: https://github.com/alexrudall/ruby-openai?tab=readme-ov-file#ruby-openai
 class ChatService
   attr_reader :message
 
