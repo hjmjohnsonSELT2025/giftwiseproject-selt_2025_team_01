@@ -22,13 +22,19 @@
         <!-- List existing event-specific gifts -->
         <ul>
           <% event_recipient.event_recipient_gift_ideas.each do |gift| %>
-            <li>
+            <li data-gift-id="<%= gift.id %>">
               <%= gift.title %>
               <%= link_to "Edit", edit_event_recipient_gift_idea_path(@event, r, gift) %> |
               <%= link_to "Delete", event_recipient_gift_idea_path(@event, r, gift),
                           data: { turbo_method: :delete, confirm: "Delete this gift idea?" } %>
+
               <% if gift.url.present? %>
-                | <%= link_to "Link", gift.url, target: "_blank" %>
+                - <%= link_to "Link", gift.url, target: "_blank" %>
+              <% end %>
+
+              <% if gift.notes.present? %>
+                <br>
+                <em><%= gift.notes %></em>
               <% end %>
             </li>
           <% end %>
