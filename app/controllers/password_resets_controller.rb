@@ -14,7 +14,10 @@ class PasswordResetsController < ApplicationController
   def create
     if (user = User.find_by(email: params[:email]))
       token = user.generate_reset_password_token!
+      Rails.logger.info "[PasswordResets] Sending reset email to #{user.email} with token=#{token}"
       PasswordResetMailer.with(user: user, token: token).reset_email.deliver_now
+    else
+      Rails.logger.info "[PasswordResets] No user found with email=#{params[:email]}"
     end
 
     redirect_to login_path, notice: "If that email exists, you'll receive a reset link shortly."
