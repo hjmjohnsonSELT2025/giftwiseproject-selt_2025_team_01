@@ -59,6 +59,10 @@ class ChatService
       "You are a helpful assistant that helps people find their gift ideas.",
       "Your gift ideas must be highly relevant to the recipient's relationship status, age, hobbies, and dislikes.",
       "The suggested gift must be something that can be purchased online.",
+      "The URL must not be an Amazon link.",
+      "The URL should point to the websites homepage",
+      "The notes must be one sentence long",
+      "The title must be a short phrase describing the gift."
     ]
   end
 
