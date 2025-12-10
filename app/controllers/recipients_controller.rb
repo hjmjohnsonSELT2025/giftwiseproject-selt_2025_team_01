@@ -61,6 +61,7 @@ class RecipientsController < ApplicationController
   def show
     # no need to do anything here—set_recipient already sets @recipient
     # Rails will render show.html.erb automatically
+    @recipient = current_user.recipients.find(params[:id])
   end
 
   private

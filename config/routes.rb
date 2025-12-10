@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
 
   # recipients stuff
-  resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show] do
+    resources :gift_ideas, only: [:new, :create, :destroy, :edit, :update]
+  end
   resources :profiles, only: [:show, :edit, :update]
 
   # events stuff

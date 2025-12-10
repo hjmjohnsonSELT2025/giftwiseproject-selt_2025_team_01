@@ -23,4 +23,5 @@ class Recipient < ApplicationRecord
   # 'has_many :events, through: :event_recipients' allows direct access to the associated events.
   has_many :event_recipients
   has_many :events, through: :event_recipients
+  has_many :gift_ideas, dependent: :destroy
 end
