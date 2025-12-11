@@ -84,3 +84,9 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
 end
+
+gem "ruby-openai", "~> 8.3"
+
+group :development, :test do
+  gem 'dotenv-rails'
+end
