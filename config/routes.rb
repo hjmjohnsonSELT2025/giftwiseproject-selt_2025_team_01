@@ -36,7 +36,11 @@ Rails.application.routes.draw do
 
     # event-specific gifts
     resources :recipients, only: [] do
-      resources :gift_ideas, controller: "event_recipient_gift_ideas"
+      resources :gift_ideas, controller: "event_recipient_gift_ideas" do
+        collection do
+          get :suggest
+        end
+      end
     end
   end
 end
