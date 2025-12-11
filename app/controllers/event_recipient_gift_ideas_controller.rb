@@ -98,10 +98,20 @@ class EventRecipientGiftIdeasController < ApplicationController
     profile_info << "Hobbies: #{actual_recipient.hobbies}" if actual_recipient.hobbies.present?
     profile_info << "Dislikes: #{actual_recipient.dislikes}" if actual_recipient.dislikes.present?
 
-    prompt_message = "Please suggest a gift idea for a person with the following profile. The suggestion must include
-                      a URL to a relevant product.\n\n"
-    # adds the prompt message and the profile info into one
-    prompt_message += profile_info.join("\n")
+    # Clearer more direct prompt
+    prompt_message = <<~PROMPT
+      Please suggest ONE specific gift for this person.
+      
+      CRITICAL: If they have multiple hobbies (e.g., "basketball, running, gaming"), you MUST consider ALL of them:
+      - First, look for gifts that combine 2+ hobbies (e.g., fitness tracker for running + gaming rewards)
+      - If no combo gift works, pick the most unique or distinctive hobby
+      - DO NOT just focus on the first hobby listed
+      
+      Recipient Profile:
+      #{profile_info.join("\n")}
+      
+      Provide a real product that can be purchased online with a working URL.
+    PROMPT
 
     ChatService.new(message: prompt_message).call
   end
