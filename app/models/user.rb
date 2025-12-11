@@ -30,4 +30,30 @@ class User < ApplicationRecord
   def should_validate_password?
     password.present? || new_record?
   end
+  RESET_PASSWORD_EXPIRATION = 2.hours
+
+  def generate_reset_password_token!
+    token = SecureRandom.urlsafe_base64(32)
+
+    update!(
+      reset_password_token: token,
+      reset_password_sent_at: Time.current
+    )
+
+    token
+  end
+
+  # For now, never expire (we can tighten later)
+  def reset_password_token_expired?
+    false
+  end
+
+  def reset_password!(new_password)
+    self.password              = new_password
+    self.password_confirmation = new_password
+    self.reset_password_token  = nil
+    self.reset_password_sent_at = nil
+    save
+  end
+
 end
