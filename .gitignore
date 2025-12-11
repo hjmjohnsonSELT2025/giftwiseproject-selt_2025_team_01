@@ -65,3 +65,5 @@
 # The double asterisk (**) matches directories recursively.
 **/rbs_collection/**/*.lock.yaml
 **/rbs_collection/**/*.yaml
+/app/assets/builds/*
+!/app/assets/builds/.keep

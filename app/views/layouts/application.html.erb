@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Giftwiseproject</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>GiftWise</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="bg-white shadow p-4">
+  <div class="max-w-4xl mx-auto flex justify-between items-center">
+    <h1 class="text-2xl font-bold">GiftWise (header)</h1>
+    <nav>
+      <%= link_to "Home", root_path, class: "text-blue-500 hover:underline mr-4" %>
+      <%= link_to "Recipients", recipients_path, class: "text-blue-500 hover:underline mr-4" %>
+    </nav>
+  </div>
+</header>
 
-  <body>
-    <!-- This block ensures that flashes are available on all views -->
-    <% flash.each do |type, message| %>
-      <div class="flash <%= type %>"><%= message %></div>
-    <% end %>
+<!-- Flash messages -->
+<div class="max-w-4xl mx-auto mt-4 px-4">
+  <% flash.each do |type, message| %>
+    <div class="mb-2 px-4 py-2 rounded
+                    <%= type == 'notice' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+      <%= message %>
+    </div>
+  <% end %>
+</div>
 
-    <%= yield %>
-  </body>
+<!-- Main content -->
+<main class="flex-grow max-w-4xl mx-auto px-4 py-6 w-full">
+  <%= yield %>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white shadow p-4 mt-10 text-center text-sm text-gray-500">
+  2025 GiftWise (footer)
+</footer>
+</body>
 </html>
