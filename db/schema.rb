@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_12_09_191330) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_10_085212) do
+  create_table "event_recipient_gift_ideas", force: :cascade do |t|
+    t.integer "event_recipient_id", null: false
+    t.string "title", null: false
+    t.text "notes"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_recipient_id"], name: "index_event_recipient_gift_ideas_on_event_recipient_id"
+  end
+
   create_table "event_recipients", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "recipient_id", null: false
@@ -79,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_09_191330) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "event_recipient_gift_ideas", "event_recipients"
   add_foreign_key "event_recipients", "events"
   add_foreign_key "event_recipients", "recipients"
   add_foreign_key "events", "users"

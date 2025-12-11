@@ -24,4 +24,9 @@ class Recipient < ApplicationRecord
   has_many :event_recipients
   has_many :events, through: :event_recipients
   has_many :gift_ideas, dependent: :destroy
+
+  # Return the EventRecipient object for a given event
+  def event_recipient_for(event)
+    event_recipients.find_by(event: event)
+  end
 end
