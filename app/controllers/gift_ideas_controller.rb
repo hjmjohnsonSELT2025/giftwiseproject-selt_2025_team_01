@@ -7,6 +7,11 @@ class GiftIdeasController < ApplicationController
     @gift_idea= @recipient.gift_ideas.build
   end
 
+  def suggest
+    suggestion = generate_ai_suggestion(@recipient)
+    render json: suggestion
+  end
+
   def create
     @gift_idea = @recipient.gift_ideas.build(gift_idea_params)
     if @gift_idea.save
@@ -46,5 +51,21 @@ class GiftIdeasController < ApplicationController
     params.require(:gift_idea).permit(:title, :notes, :url)
   end
 
+  def generate_ai_suggestion(recipient)
+    # Build a prompt based on recipient's profile
+    profile_info = []
+    profile_info << "Name: #{recipient.name}"
+    profile_info << "Age: #{recipient.age}" if recipient.age.present?
+    profile_info << "Relationship: #{recipient.relationship}" if recipient.relationship.present?
+    profile_info << "Hobbies: #{recipient.hobbies}" if recipient.hobbies.present?
+    profile_info << "Dislikes: #{recipient.dislikes}" if recipient.dislikes.present?
+
+    prompt_message = "Please suggest a gift idea for a person with the following profile. The suggestion must include
+                      a URL to a relevant product.\n\n"
+    # adds the prompt message and the profile info into one
+    prompt_message += profile_info.join("\n")
+
+    ChatService.new(message: prompt_message).call
+  end
 
 end
