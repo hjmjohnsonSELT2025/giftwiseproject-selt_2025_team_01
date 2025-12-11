@@ -1,15 +1,15 @@
 <!-- Cute Gift Recipients Header -->
 <div class="pt-8 pb-2 px-2 bg-[#fef8f9]">
-  <div class="flex items-center gap-2 max-w-2xl mx-auto">
+  <div class="max-w-4xl mx-auto">
     <h1 class="text-2xl font-bold text-gray-700">Your Gift Recipients</h1>
+    <p class="text-gray-400 mt-1 mb-6">Keep track of special people and their gift preferences</p>
   </div>
-  <p class="text-gray-400 mt-1 mb-6 max-w-2xl mx-auto">Keep track of special people and their gift preferences</p>
 </div>
 
 <!-- Add Recipient Button -->
 <div class="max-w-4xl mx-auto w-full px-2 mb-8">
-  <div class="rounded-2xl bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] shadow-lg flex items-center justify-end h-[64px] px-6">
-    <%= link_to new_recipient_path, class: "flex items-center gap-2 text-white font-semibold text-lg px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-all duration-200 shadow-none" do %>
+  <div class="rounded-2xl bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] shadow-lg flex items-center h-[64px] px-6">
+    <%= link_to new_recipient_path, class: "flex items-center justify-center gap-2 text-white font-semibold text-lg px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-all duration-200 shadow-none w-full" do %>
       <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5">
         <!-- Plus Icon -->
         <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14m7-7H5"/></svg>
@@ -24,7 +24,7 @@
   <ul class="space-y-4">
     <% @recipients.each_with_index do |r, i| %>
       <li>
-        <%= link_to recipient_path(r), class: "flex items-center gap-4 bg-white rounded-3xl shadow-sm hover: shadow-md transition-all duration-200 px-5 py-4 border border-gray-100 group" do %>
+        <%= link_to recipient_path(r), class: "flex items-center gap-4 bg-white rounded-3xl shadow-sm hover:shadow-md transition-all duration-200 px-5 py-4 border border-gray-100 group" do %>
           <span class="inline-flex items-center justify-center rounded-2xl shadow-sm w-20 h-20 flex-shrink-0"
                 style="background:  <%= [
               'linear-gradient(135deg,#ffb6b9,#fd79a8)',
