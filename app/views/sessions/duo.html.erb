@@ -1,23 +1,28 @@
 <h1>Duo Verification</h1>
 
-<p>If you have Duo set up correctly, a prompt should appear below:</p>
+<p>If Duo is configured correctly, you should see a Duo login prompt inside the box below.</p>
 
-<div id="duo-target"></div>
+<div id="duo-target" style="width: 100%; max-width: 400px; height: 330px; border: 1px solid #ccc;"></div>
 
 <hr>
 
-<p><strong>Debug info (temporary):</strong></p>
-<p>DUO_HOST: <%= DUO["DUO_HOST"].inspect %></p>
-<p>sig_request present?: <%= @sig_request.present? %></p>
+<h2>Debug info (temporary)</h2>
+<ul>
+  <li>DUO_HOST: <code><%= DUO["DUO_HOST"].inspect %></code></li>
+  <li>sig_request present?: <code><%= @sig_request.present? %></code></li>
+  <li>sig_request prefix: <code><%= @sig_request[0, 10] if @sig_request %></code></li>
+</ul>
 
-<!-- 1) Load Duo JS library -->
+<!-- Load Duo’s JS library -->
 <script src="https://api.duosecurity.com/frame/hosted/Duo-Web-v2.js"></script>
 
-<!-- 2) Only call Duo.init after the page & script are ready -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        console.log("Duo page loaded");
+        console.log("window.Duo =", window.Duo);
+
         if (!window.Duo) {
-            console.error("Duo library did not load.");
+            console.error("Duo JS library failed to load");
             return;
         }
 
