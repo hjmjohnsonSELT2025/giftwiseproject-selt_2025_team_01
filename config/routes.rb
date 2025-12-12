@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: "logout"
 
+  # Duo 2FA flow
+  get  "/login/duo",        to: "sessions#duo",        as: :duo_challenge
+  post "/login/duo_verify", to: "sessions#duo_verify", as: :duo_verify
+
+
   #Password reset stuff:
   resources :password_resets, only: [:new, :create, :edit, :update]
 

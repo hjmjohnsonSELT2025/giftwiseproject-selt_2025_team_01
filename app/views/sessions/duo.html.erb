@@ -1,0 +1,17 @@
+<script src="https://api.duosecurity.com/frame/hosted/Duo-Web-v2.js" type="text/javascript"></script>
+
+<iframe id="duo_iframe"
+        data-host="<%= DUO['DUO_HOST'] %>"
+        data-sig-request="<%= @sig_request %>"
+        data-post-action="<%= duo_verify_path %>">
+</iframe>
+
+<style>
+    #duo_iframe {
+        width: 100%;
+        min-width: 304px;
+        max-width: 620px;
+        height: 330px;
+        border: none;
+    }
+</style>

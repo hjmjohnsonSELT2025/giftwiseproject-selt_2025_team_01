@@ -1,0 +1,9 @@
+#heroku config:set DUO_CLIENT_ID=DIG20FPILDKZ0P1TQ405
+#heroku config:set DUO_CLIENT_SECRET=66mxqX2V2PRRlcLlCvrWZdBi1acB4zczdmaRW8Tv
+#heroku config:set DUO_REDIRECT_URI=https://giftwise-10b0e357cd5b.herokuapp.com/duo/callback
+#heroku config:set DUO_API_HOST=api-d3c08be7.duosecurity.com
+#heroku config:set DUO_AKEY="thequickbrownfoxjumpsoverthelazydog"
+DUO_IKEY: "DIG20FPILDKZ0P1TQ405"
+DUO_SKEY: "66mxqX2V2PRRlcLlCvrWZdBi1acB4zczdmaRW8Tv"
+DUO_HOST: "api-d3c08be7.duosecurity.com"
+DUO_AKEY: "thequickbrownfoxjumpsoverthelazydog"

@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user # makes it available in views too
   before_action :ensure_profile_exists
 
+  # duo stuff uhhhh idk if it should be here
+  # skip_before_action :require_no_authentication, only: [:duo_verify]
+  # skip_before_action :verify_authenticity_token
+
+
   private
 
   # [MODEL & SESSION] Retrieves the currently logged-in user.

@@ -56,6 +56,9 @@
 *.sql
 *.dump
 
+#ignore the duo secrets dont want those on the interwebs
+/duo_cred.yml
+
 # Ignore the folder named .gem_rbs_collection anywhere in the repository
 .gem_rbs_collection/
 
