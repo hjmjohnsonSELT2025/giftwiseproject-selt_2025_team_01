@@ -1,0 +1,20 @@
+<%# Usage: render 'shared/primary_action_button', label:, path:, icon_svg: nil, method: nil, confirm: nil, full_width: false %>
+<%
+  http_method = @method || local_assigns[:method]
+  confirm_msg = @confirm || local_assigns[:confirm]
+  button_path = @path || local_assigns[:path]
+  button_label = @label || local_assigns[:label]
+  button_icon = @icon_svg || local_assigns[:icon_svg]
+  is_full_width = @full_width || local_assigns[:full_width]
+%>
+<%= link_to button_path,
+            method: http_method,
+            data: confirm_msg ? { turbo_method: http_method, confirm: confirm_msg } : (http_method ? { turbo_method: http_method } : {}),
+            class: "flex items-center justify-center gap-2 font-semibold text-white px-6 py-3 rounded-xl transition-all duration-200 shadow-lg bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] #{is_full_width ? 'w-full' : ''}" do %>
+  <% if button_icon %>
+    <span class="inline-flex items-center justify-center text-white">
+      <%= button_icon %>
+    </span>
+  <% end %>
+  <span class="text-white"><%= button_label %></span>
+<% end %>
