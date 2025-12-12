@@ -117,47 +117,9 @@
   </div>
 
   <!-- Gift Ideas Cards -->
-  <div class="grid grid-cols-1 md: grid-cols-2 lg: grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @recipient.gift_ideas.each do |idea| %>
-      <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-shadow">
-        <!-- Gift Icon -->
-        <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 mx-auto">
-          <svg class="w-8 h-8 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-          </svg>
-        </div>
-
-        <!-- Gift Title -->
-        <h3 class="text-lg font-semibold text-gray-800 text-center mb-4"><%= idea.title %></h3>
-
-        <!-- Notes -->
-        <% if idea.notes.present? %>
-          <p class="text-sm text-gray-600 italic text-center mb-4"><%= idea.notes %></p>
-        <% end %>
-
-        <!-- Action Buttons -->
-        <div class="flex gap-2">
-          <%= link_to edit_recipient_gift_idea_path(@recipient, idea), class: "flex-1 flex items-center justify-center py-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors" do %>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-          <% end %>
-
-          <%= link_to recipient_gift_idea_path(@recipient, idea), method: :delete, data: { turbo_method: :delete, confirm: "Are you sure?"}, class: "flex-1 flex items-center justify-center py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors" do %>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-          <% end %>
-
-          <% if idea.url.present? %>
-            <%= link_to idea.url, target: "_blank", class: "flex-1 flex items-center justify-center py-2 bg-yellow-100 text-yellow-600 rounded-lg hover:bg-yellow-200 transition-colors" do %>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <%= render GiftIdeaCardComponent.new(gift_idea: idea, recipient: @recipient) %>
     <% end %>
   </div>
 
