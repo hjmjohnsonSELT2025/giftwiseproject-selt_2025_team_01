@@ -22,7 +22,8 @@
     <% bg_colors = ['bg-gradient-to-br from-pink-400 to-pink-500', 'bg-gradient-to-br from-blue-400 to-purple-500', 'bg-gradient-to-br from-yellow-300 to-orange-400'] %>
     <% @recipients.each_with_index do |recipient, i| %>
       <li>
-        <%= render RecipientCardComponent.new(recipient: recipient, bg_color: bg_colors[i % bg_colors.size]) %>
+        <%#= render RecipientCardComponent.new(recipient: recipient, bg_color: bg_colors[i % bg_colors.size]) %>
+        <%= render RecipientCardComponent.new(recipient: recipient, index: i) %>
       </li>
     <% end %>
   </ul>

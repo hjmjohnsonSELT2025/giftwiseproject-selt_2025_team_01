@@ -1,6 +1,6 @@
 class RecipientCardComponent < ViewComponent::Base
-  def initialize(recipient:, bg_color:)
+  def initialize(recipient:, index:)
     @recipient = recipient
-    @bg_color = bg_color
+    @index = index
   end
 end
