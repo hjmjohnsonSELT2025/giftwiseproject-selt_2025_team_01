@@ -1,5 +1,4 @@
 <div class="max-w-5xl mx-auto">
-
   <!-- Back to Recipients Link -->
   <div class="mb-6">
     <%= link_to recipients_path, class: "inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors" do %>
@@ -164,6 +163,3 @@
 
 </div>
 
-
-<%= link_to "Delete", recipient_path(@recipient), method: :delete,
-            data: { turbo_method: :delete, confirm: "Are you sure?" } %>
