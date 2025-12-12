@@ -1,35 +1,41 @@
-<h1>Edit Profile</h1>
-
-<%= form_with model: @profile, local: true do |f| %>
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+<div class="max-w-xl mx-auto mt-10 space-y-6">
+  <div class="bg-white rounded-2xl shadow-md p-8">
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6">Edit Profile</h1>
+    <%= form_with model: @profile, local: true do |f| %>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <%= f.label :name, class: "block text-base font-medium text-gray-700" %>
+          <%= f.text_field :name, class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 hover:border-[#ff9b9f]" %>
+        </div>
+        <div class="space-y-2">
+          <%= f.label :age, class: "block text-base font-medium text-gray-700" %>
+          <%= f.number_field :age, class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 hover:border-[#ff9b9f]" %>
+        </div>
+        <div class="space-y-2">
+          <%= f.label :occupation, class: "block text-base font-medium text-gray-700" %>
+          <%= f.text_field :occupation, class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 hover:border-[#ff9b9f]" %>
+        </div>
+        <div class="space-y-2">
+          <%= f.label :hobbies, class: "block text-base font-medium text-gray-700" %>
+          <%= f.text_area :hobbies, rows: 3, class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none hover:border-[#ff9b9f]" %>
+        </div>
+        <div class="space-y-2">
+          <%= f.label :likes, class: "block text-base font-medium text-gray-700" %>
+          <%= f.text_area :likes, rows: 3, class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none hover:border-[#ff9b9f]" %>
+        </div>
+        <div class="space-y-2">
+          <%= f.label :dislikes, class: "block text-base font-medium text-gray-700" %>
+          <%= f.text_area :dislikes, rows: 3, class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none hover:border-[#ff9b9f]" %>
+        </div>
+      </div>
+      <div class="pt-6 flex gap-4">
+        <div class="flex-1">
+          <%= link_to "Cancel", profile_path(@profile), class: "w-full flex items-center justify-center px-6 py-3 bg-[#f5f0f1] border-2 border-[#fef8f9] text-muted-foreground rounded-xl font-medium hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" %>
+        </div>
+        <div class="flex-1">
+          <%= f.submit "Save Profile", class: "w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
-
-  <div>
-    <%= f.label :occupation %><br>
-    <%= f.text_field :occupation %>
-  </div>
-
-  <div>
-    <%= f.label :hobbies %><br>
-    <%= f.text_area :hobbies %>
-  </div>
-
-  <div>
-    <%= f.label :likes %><br>
-    <%= f.text_area :likes %>
-  </div>
-
-  <div>
-    <%= f.label :dislikes %><br>
-    <%= f.text_area :dislikes %>
-  </div>
-
-  <%= f.submit "Save Profile" %>
-<% end %>
+</div>

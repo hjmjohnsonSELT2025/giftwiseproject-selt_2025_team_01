@@ -1,20 +1,30 @@
-<h1>My Profile</h1>
-
-<p><strong>Name:</strong> <%= @profile.name %></p>
-<p><strong>Age:</strong> <%= @profile.age %></p>
-<p><strong>Occupation:</strong> <%= @profile.occupation %></p>
-
-<p><strong>Hobbies:</strong></p>
-<p><%= simple_format(@profile.hobbies) %></p>
-
-<p><strong>Likes:</strong></p>
-<p><%= simple_format(@profile.likes) %></p>
-
-<p><strong>Dislikes:</strong></p>
-<p><%= simple_format(@profile.dislikes) %></p>
-
-<% if @profile.user_id == session[:user_id] %>
-  <%= link_to "Edit Profile", edit_profile_path(@profile), class: "btn btn-primary" %>
-<% end %>
-<p><%= link_to "Back to Home", root_path %></p>
-
+<div class="max-w-xl mx-auto mt-10 space-y-6">
+  <div class="bg-white rounded-2xl shadow-md p-8">
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6">My Profile</h1>
+    <div class="space-y-3">
+      <p><span class="font-semibold text-gray-700">Name:</span> <span class="text-gray-600"><%= @profile.name %></span></p>
+      <p><span class="font-semibold text-gray-700">Age:</span> <span class="text-gray-600"><%= @profile.age %></span></p>
+      <p><span class="font-semibold text-gray-700">Occupation:</span> <span class="text-gray-600"><%= @profile.occupation %></span></p>
+    </div>
+    <div class="mt-6 space-y-4">
+      <div>
+        <h2 class="text-lg font-semibold text-gray-700 mb-1">Hobbies</h2>
+        <p class="text-gray-600"><%= simple_format(@profile.hobbies) %></p>
+      </div>
+      <div>
+        <h2 class="text-lg font-semibold text-gray-700 mb-1">Likes</h2>
+        <p class="text-gray-600"><%= simple_format(@profile.likes) %></p>
+      </div>
+      <div>
+        <h2 class="text-lg font-semibold text-gray-700 mb-1">Dislikes</h2>
+        <p class="text-gray-600"><%= simple_format(@profile.dislikes) %></p>
+      </div>
+    </div>
+    <div class="mt-8 flex gap-4">
+      <% if @profile.user_id == session[:user_id] %>
+        <%= link_to "Edit Profile", edit_profile_path(@profile), class: "flex-1 flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" %>
+      <% end %>
+      <%= link_to "Back to Home", root_path, class: "flex-1 flex items-center justify-center px-6 py-3 bg-[#f5f0f1] border-2 border-[#fef8f9] text-muted-foreground rounded-xl font-medium hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" %>
+    </div>
+  </div>
+</div>
