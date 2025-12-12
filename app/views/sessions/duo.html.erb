@@ -1,23 +1,21 @@
-<h1>Two-Factor Authentication</h1>
+<h1>Duo Verification</h1>
 
-<p>Please complete Duo authentication to finish logging in.</p>
+<p>If you have Duo set up correctly, a prompt should appear below:</p>
 
-<!-- Duo hosted JS (v2) -->
+<div id="duo-target"></div>
+
+<hr>
+
+<p><strong>Debug info (temporary):</strong></p>
+<p>DUO_HOST: <%= DUO["DUO_HOST"].inspect %></p>
+<p>sig_request present?: <%= @sig_request.present? %></p>
+
 <script src="https://api.duosecurity.com/frame/hosted/Duo-Web-v2.js"></script>
-
-<iframe
-  id="duo_iframe"
-  title="Duo two-factor authentication"
-  frameborder="0"
-  style="width: 100%; max-width: 500px; height: 400px; border: 1px solid #ccc;"
-  data-host="<%= DUO['DUO_HOST'] %>"
-  data-sig-request="<%= @sig_request %>"
-  data-post-action="<%= duo_verify_path %>"
-  data-post-argument="sig_response">
-</iframe>
-
-<pre style="margin-top: 1rem; font-size: 0.8rem;">
-  DEBUG:
-DUO_HOST: <%= DUO['DUO_HOST'].inspect %>
-  sig_request present?: <%= @sig_request.present? %>
-</pre>
+<script>
+    Duo.init({
+        host: "<%= DUO["DUO_HOST"] %>",
+        sig_request: "<%= @sig_request %>",
+        post_action: "<%= duo_verify_url %>",
+        post_argument: "sig_response"
+    });
+</script>
