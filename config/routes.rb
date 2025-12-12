@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: "logout"
 
+  #Password reset stuff:
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
+
   # recipients stuff
   resources :recipients, only: [:index, :new, :create, :edit, :update, :destroy, :show] do
     resources :gift_ideas, only: [:new, :create, :destroy, :edit, :update] do
@@ -32,7 +36,11 @@ Rails.application.routes.draw do
 
     # event-specific gifts
     resources :recipients, only: [] do
-      resources :gift_ideas, controller: "event_recipient_gift_ideas"
+      resources :gift_ideas, controller: "event_recipient_gift_ideas" do
+        collection do
+          get :suggest
+        end
+      end
     end
   end
 end
