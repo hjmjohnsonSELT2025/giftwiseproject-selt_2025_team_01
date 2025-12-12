@@ -69,11 +69,8 @@
                        full_width: true %>
           </div>
           <div class="flex-1">
-            <%= render 'shared/primary_action_button',
-                       label: 'Save Recipient',
-                       path: '',
-                       method: nil,
-                       full_width: true %>
+            <%= f.submit 'Save Recipient',
+                class: "w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" %>
           </div>
         </div>
       </div>
