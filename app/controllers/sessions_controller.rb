@@ -14,19 +14,20 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       if duo_enabled? && duo_configured?
-        # Store the user id temporarily until Duo succeeds
         session[:pre_2fa_user_id] = user.id
         redirect_to duo_login_path
       else
-        # Normal login (no Duo)
         session[:user_id] = user.id
         redirect_to root_path, notice: "Welcome, #{user.email}"
       end
     else
+      session[:user_id] = nil
+      session[:pre_2fa_user_id] = nil
       flash.now[:alert] = "Invalid email or password"
       render :new, status: :unprocessable_entity
     end
   end
+
 
 
   # Duo: show the iframe

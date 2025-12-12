@@ -10,12 +10,22 @@
 <p>DUO_HOST: <%= DUO["DUO_HOST"].inspect %></p>
 <p>sig_request present?: <%= @sig_request.present? %></p>
 
+<!-- 1) Load Duo JS library -->
 <script src="https://api.duosecurity.com/frame/hosted/Duo-Web-v2.js"></script>
+
+<!-- 2) Only call Duo.init after the page & script are ready -->
 <script>
-    Duo.init({
-        host: "<%= DUO["DUO_HOST"] %>",
-        sig_request: "<%= @sig_request %>",
-        post_action: "<%= duo_verify_url %>",
-        post_argument: "sig_response"
+    document.addEventListener("DOMContentLoaded", function () {
+        if (!window.Duo) {
+            console.error("Duo library did not load.");
+            return;
+        }
+
+        Duo.init({
+            host: "<%= DUO["DUO_HOST"] %>",
+            sig_request: "<%= @sig_request %>",
+            post_action: "<%= duo_verify_url %>",
+            post_argument: "sig_response"
+        });
     });
 </script>
