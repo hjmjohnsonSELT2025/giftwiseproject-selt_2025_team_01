@@ -9,7 +9,7 @@ class GiftIdeaCardComponent < ViewComponent::Base
     if @recipient
       edit_recipient_gift_idea_path(@recipient, @gift_idea)
     elsif @event_recipient
-      edit_event_recipient_gift_idea_path(@event_recipient.event, @event_recipient, @gift_idea)
+      edit_event_recipient_gift_idea_path(@event_recipient.event, @event_recipient.recipient, @gift_idea)
     end
   end
 
@@ -17,7 +17,7 @@ class GiftIdeaCardComponent < ViewComponent::Base
     if @recipient
       recipient_gift_idea_path(@recipient, @gift_idea)
     elsif @event_recipient
-      event_recipient_gift_idea_path(@event_recipient.event, @event_recipient, @gift_idea)
+      event_recipient_gift_idea_path(@event_recipient.event, @event_recipient.recipient, @gift_idea)
     end
   end
 
