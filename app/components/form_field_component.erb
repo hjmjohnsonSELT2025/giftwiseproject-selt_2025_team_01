@@ -1,0 +1,19 @@
+<div class="mb-5">
+  <%= @form.label @field, @label, class: "block font-medium text-gray-700 mb-1" %>
+
+  <% base_classes = "w-full rounded-xl bg-white border border-gray-300 p-3
+                     focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200" %>
+
+  <% merged_opts = { class: base_classes }.merge(@options) %>
+
+  <%# Render the correct input type %>
+  <% if @type == :text_area %>
+    <%= @form.text_area @field, merged_opts %>
+  <% elsif @type == :date_field %>
+    <%= @form.date_field @field, merged_opts %>
+  <% elsif @type == :number_field %>
+    <%= @form.number_field @field, merged_opts %>
+  <% else %>
+    <%= @form.text_field @field, merged_opts %>
+  <% end %>
+</div>
