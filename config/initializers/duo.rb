@@ -1,4 +1,5 @@
-# config/initializers/duo.rb
+require "duo_web"
+
 if Rails.env.production?
   DUO = {
     "DUO_IKEY" => ENV["DUO_IKEY"],
