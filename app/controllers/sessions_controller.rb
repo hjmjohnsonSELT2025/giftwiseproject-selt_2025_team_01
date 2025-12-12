@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   # 3. Sets the session cookie if successful, or re-renders the 'new' View with errors if authentication fails.
   def create
     user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password])
+    if user&.valid_password?(params[:password])
       session[:user_id] = user.id
       redirect_to root_path, notice: "Welcome, #{user.email}"
     else
