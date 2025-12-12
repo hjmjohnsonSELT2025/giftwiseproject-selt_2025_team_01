@@ -1,15 +1,15 @@
 <!-- Cute Gift Recipients Header -->
 <div class="pt-8 pb-2 px-2 bg-[#fef8f9]">
   <div class="max-w-4xl mx-auto">
-    <h1 class="text-2xl font-bold text-gray-700">Your Gift Recipients</h1>
-    <p class="text-gray-400 mt-1 mb-6">Keep track of special people and their gift preferences</p>
+    <h1 class="text-xl font-bold text-gray-700">Your Gift Recipients</h1>
+    <p class="text-gray-400 mt-1 mb-6 text-sm">Keep track of special people and their gift preferences</p>
   </div>
 </div>
 
 <!-- Add Recipient Button -->
 <div class="max-w-4xl mx-auto w-full px-2 mb-8">
   <div class="rounded-2xl bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] shadow-lg flex items-center h-[64px] px-6">
-    <%= link_to new_recipient_path, class: "flex items-center justify-center gap-2 text-white font-semibold text-lg px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-all duration-200 shadow-none w-full" do %>
+    <%= link_to new_recipient_path, class: "flex items-center justify-center gap-2 text-white font-semibold text-base px-5 py-2 rounded-xl bg-white/20 hover:bg-white/30 transition-all duration-200 shadow-none w-full" do %>
       <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5">
         <!-- Plus Icon -->
         <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14m7-7H5"/></svg>
@@ -35,8 +35,8 @@
             <svg width="44" height="44" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
           </span>
           <div class="flex-1 min-w-0">
-            <div class="text-2xl font-semibold text-gray-800 mb-1"><%= r.name %></div>
-            <div class="text-gray-400 text-base">Click to view gift ideas</div>
+            <div class="text-lg font-semibold text-gray-800 mb-0. 5"><%= r.name %></div>
+            <div class="text-gray-400 text-sm">Click to view gift ideas</div>
           </div>
           <span class="ml-auto flex-shrink-0">
             <!-- Chevron Icon -->
