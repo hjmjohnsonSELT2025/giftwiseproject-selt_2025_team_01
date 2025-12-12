@@ -15,5 +15,6 @@
   "license": "ISC",
   "devDependencies": {
     "tailwindcss": "^4.1.18"
-  }
+  },
+  "engines": {"node": ">=14.0.0"}
 }
