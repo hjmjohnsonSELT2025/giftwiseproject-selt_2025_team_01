@@ -1,60 +1,29 @@
-<h1><%= @event.name %></h1>
+<%= render SectionHeaderComponent.new(
+  title: @event.name,
+  subtitle: @event.date.strftime("%B %-d, %Y")
+) %>
 
-<p>Date: <%= @event.date %></p>
-<p>Theme: <%= @event.theme %></p>
-<p>Description: <%= @event.description %></p>
-<p>Budget: <%= number_to_currency(@event.budget) if @event.budget %></p>
+<div class="max-w-4xl mx-auto px-2">
 
-<h2>Your Recipients</h2>
-<ul id="event-recipients">
-  <% @event.recipients.each do |r| %>
-    <% event_recipient = r.event_recipient_for(@event) %>
-    <li>
-      <strong><%= r.name %></strong>
-      <%= button_to "Remove", remove_recipient_event_path(@event, recipient_id: r.id),
-                    method: :delete,
-                    data: { confirm: "Remove #{r.name} from this event?" } %>
+  <%= render EventDetailsComponent.new(event: @event) %>
 
-      <!-- First, have link to add new gifts -->
-      <div style="margin-left: 20px;">
-        <%= link_to "Add Gift", new_event_recipient_gift_idea_path(@event, r) %>
+  <h2 class="text-lg font-semibold text-gray-700 mb-4">Recipients</h2>
 
-        <!-- List existing event-specific gifts -->
-        <ul>
-          <% event_recipient.event_recipient_gift_ideas.each do |gift| %>
-            <li data-gift-id="<%= gift.id %>">
-              <%= gift.title %>
-              <%= link_to "Edit", edit_event_recipient_gift_idea_path(@event, r, gift) %> |
-              <%= link_to "Delete", event_recipient_gift_idea_path(@event, r, gift),
-                          data: { turbo_method: :delete, confirm: "Delete this gift idea?" } %>
-
-              <% if gift.url.present? %>
-                - <%= link_to "Link", gift.url, target: "_blank" %>
-              <% end %>
-
-              <% if gift.notes.present? %>
-                <br>
-                <em><%= gift.notes %></em>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </li>
+  <% @event.recipients.each do |recipient| %>
+    <%= render EventRecipientCardComponent.new(event: @event, recipient: recipient) %>
   <% end %>
-</ul>
 
-<h2>Add a Recipient to Event</h2>
-<ul id="available-recipients">
-  <% (current_user.recipients - @event.recipients).each do |r| %>
-    <li>
-      <%= r.name %>
-      <%= button_to "Add", add_recipient_event_path(@event, recipient_id: r.id),
-                    method: :post %>
-    </li>
-  <% end %>
-</ul>
+  <%= render AvailableRecipientsComponent.new(
+    event: @event,
+    recipients: current_user.recipients - @event.recipients
+  ) %>
 
-<%= link_to "Edit", edit_event_path(@event) %> |
-<%= link_to "Delete", event_path(@event), data: { turbo_method: :delete } %> |
-<%= link_to "Back to Events", events_path %>
+  <div class="mt-8 flex gap-4 text-sm text-gray-600">
+    <%= link_to "Edit", edit_event_path(@event), class: "text-indigo-600" %>
+    <%= link_to "Delete", event_path(@event),
+                data: { turbo_method: :delete },
+                class: "text-red-600" %>
+    <%= link_to "Back", events_path, class: "text-gray-600" %>
+  </div>
+
+</div>

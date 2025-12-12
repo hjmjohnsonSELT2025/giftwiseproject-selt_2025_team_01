@@ -1,0 +1,42 @@
+<%= link_to event_path(@event),
+            class: "block bg-white rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5" do %>
+
+  <div class="flex items-center justify-between">
+
+    <div class="flex items-center gap-4">
+
+      <!-- Calendar Icon -->
+      <div class="w-16 h-16 bg-gradient-to-br from-pink-300 to-pink-400 rounded-2xl flex items-center justify-center flex-shrink-0">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"/>
+          <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-medium text-gray-800 mb-1"><%= @event.name %></h3>
+
+        <div class="flex items-center gap-2 text-gray-500 text-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"/>
+            <line x1="16" y1="2" x2="16" y2="6" stroke-width="2"/>
+            <line x1="8" y1="2" x2="8" y2="6" stroke-width="2"/>
+            <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
+          </svg>
+
+          <span><%= @event.date.strftime("%B %d, %Y") %></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Chevron Icon -->
+    <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 5l7 7-7 7"/>
+    </svg>
+  </div>
+
+<% end %>

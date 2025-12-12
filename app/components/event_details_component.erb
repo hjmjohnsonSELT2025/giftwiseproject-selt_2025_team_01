@@ -1,0 +1,12 @@
+<div class="bg-white rounded-3xl shadow-md p-6 mb-8">
+  <h2 class="text-lg font-semibold text-gray-700 mb-4">Event Details</h2>
+
+  <div class="space-y-2 text-gray-600">
+    <p><strong>Date:</strong> <%= @event.date.strftime("%B %-d, %Y") %></p>
+    <p><strong>Theme:</strong> <%= @event.theme.presence || 'None' %></p>
+    <p><strong>Description:</strong> <%= @event.description.presence || 'None' %></p>
+    <% if @event.budget %>
+      <p><strong>Budget:</strong> <%= number_to_currency(@event.budget) %></p>
+    <% end %>
+  </div>
+</div>
