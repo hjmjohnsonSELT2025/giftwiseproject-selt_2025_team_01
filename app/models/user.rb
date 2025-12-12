@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   # [MODEL & SECURITY] Built-in Rails method for authentication.
   # 1. Adds virtual attributes 'password' and 'password_confirmation'.
   # 2. Validates that they match.

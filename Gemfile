@@ -90,3 +90,4 @@ gem "ruby-openai", "~> 8.3"
 group :development, :test do
   gem 'dotenv-rails'
 end
+gem "devise", "~> 4.9"
