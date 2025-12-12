@@ -1,4 +1,4 @@
-<%= form_with model: gift_idea, url: url, local: true do |f| %>
+<%= form_with model: gift_idea, url: url, local: true, data: { controller: "event-gift-idea" } do |f| %>
   <% if gift_idea.errors.any? %>
     <div style="color: red;">
       <h2><%= pluralize(gift_idea.errors.count, "error") %> prohibited this gift idea from being saved:</h2>
@@ -12,18 +12,24 @@
 
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, data: {event_gift_idea_target: "title"} %>
   </p>
 
   <p>
     <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, data: {event_gift_idea_target: "notes"} %>
   </p>
 
   <p>
     <%= f.label :url, "URL" %><br>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, data: {event_gift_idea_target: "url"} %>
   </p>
 
-  <p><%= f.submit submit_label || "Save" %></p>
+  <p><%= f.submit submit_label || "Save" %>
+    <button type="button"
+            data-event-gift-idea-target="generateButtonEvent"
+            data-action="click->event-gift-idea#generateSuggestionEvent">
+      AI Gift Idea
+    </button>
+  </p>
 <% end %>
