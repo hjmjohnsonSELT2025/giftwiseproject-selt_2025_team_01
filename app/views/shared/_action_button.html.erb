@@ -2,9 +2,9 @@
 <%= link_to path,
             method: local_assigns[:method],
             data: (local_assigns[:confirm] ? { confirm: local_assigns[:confirm] } : {}),
-            class: "flex items-center justify-center gap-2 font-medium text-base px-5 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg #{color_classes} #{local_assigns[:full_width] ? 'w-full' : ''}" do %>
-  <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5">
+            class: "flex items-center justify-center gap-2 font-medium text-white px-5 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg #{color_classes} #{local_assigns[:full_width] ? 'w-full' : ''}" do %>
+  <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5 text-white">
     <%= icon_svg %>
   </span>
-  <%= label %>
+  <span class="text-white"><%= label %></span>
 <% end %>

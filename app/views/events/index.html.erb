@@ -12,18 +12,12 @@
 
   <!-- Add Event Button -->
   <div class="flex items-center max-w-4xl mx-auto w-full px-2 mb-8">
-    <%= link_to new_event_path,
-                class: "bg-gradient-to-r from-purple-400 to-indigo-400 flex items-center justify-center gap-2 text-gray-700 font-semibold text-base px-5 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg w-full" do %>
-
-      <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5">
-        <!-- Plus Icon -->
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                d="M12 5v14m7-7H5"/>
-        </svg>
-      </span>
-      Add Event
-    <% end %>
+    <%= render 'shared/action_button',
+               label: 'Add Event',
+               path: new_event_path,
+               color_classes: 'bg-gradient-to-r from-purple-400 to-indigo-400',
+               icon_svg: '<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14m7-7H5"/></svg>'.html_safe,
+               full_width: true %>
   </div>
 
   <!-- Events List -->
