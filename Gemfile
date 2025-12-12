@@ -87,6 +87,8 @@ end
 
 gem "ruby-openai", "~> 8.3"
 
+gem 'duo_web', '~> 1.0'
+
 group :development, :test do
   gem 'dotenv-rails'
 end

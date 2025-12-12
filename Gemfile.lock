@@ -149,6 +149,7 @@ GEM
       dotenv (= 3.2.0)
       railties (>= 6.1)
     drb (2.2.3)
+    duo_web (1.0.3)
     erb (5.1.3)
     erubi (1.13.1)
     event_stream_parser (1.0.0)
@@ -413,6 +414,7 @@ DEPENDENCIES
   database_cleaner-active_record
   debug
   dotenv-rails
+  duo_web (~> 1.0)
   factory_bot_rails
   faker
   importmap-rails
