@@ -17,15 +17,15 @@
   <%= render FormFieldComponent.new(form: f, field: :notes, type: :text_area, options: { rows: 4, data: { event_gift_idea_target: "notes" } }) %>
   <%= render FormFieldComponent.new(form: f, field: :url, options: { data: { event_gift_idea_target: "url" } }) %>
 
-  <div class="mt-6 flex flex-col gap-3">
-    <%= f.submit submit_label || "Save",
-                 class: "w-full bg-gradient-to-r from-purple-400 to-indigo-400 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200" %>
-
+  <div class="mt-6 flex flex-col sm:flex-row gap-3">
     <button type="button"
             data-event-gift-idea-target="generateButtonEvent"
             data-action="click->event-gift-idea#generateSuggestionEvent"
             class="flex-1 w-full sm:w-auto bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200">
       AI Gift Idea
     </button>
+
+    <%= f.submit submit_label || "Save",
+                 class: "flex-1 w-full sm:w-auto bg-gradient-to-r from-purple-400 to-indigo-500 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200" %>
   </div>
 <% end %>
