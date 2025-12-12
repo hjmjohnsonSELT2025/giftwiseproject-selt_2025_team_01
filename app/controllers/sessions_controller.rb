@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
     end
   end
 
+
   # Duo: show the iframe
   def duo
     user = User.find_by(id: session[:pre_2fa_user_id])

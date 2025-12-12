@@ -15,3 +15,9 @@
   data-post-action="<%= duo_verify_path %>"
   data-post-argument="sig_response">
 </iframe>
+
+<pre style="margin-top: 1rem; font-size: 0.8rem;">
+  DEBUG:
+DUO_HOST: <%= DUO['DUO_HOST'].inspect %>
+  sig_request present?: <%= @sig_request.present? %>
+</pre>
