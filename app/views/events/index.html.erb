@@ -1,18 +1,61 @@
-<h1>Your Events</h1>
+<div class="min-h-screen bg-gray-50 py-8 px-4">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header Section -->
+    <div class="mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-3xl">🎁</span>
+        <h1 class="text-2xl font-semibold text-gray-800">Your Events</h1>
+      </div>
+      <p class="text-gray-500 text-base ml-12">Track important dates and plan your gift giving</p>
+    </div>
 
-<p>
-  Logged in as <%= current_user.email %> |
-  <%= link_to "View Profile", profile_path(current_user.profile) %> |
-  <%= link_to "View Recipients", recipients_path %> |
-  <%= link_to "Log Out", logout_path, method: :delete, data: { turbo_method: :delete, confirm: "Are you sure you want to log out?" } %>
-</p>
+    <!-- Add Event Button -->
+    <%= link_to new_event_path, class: "block w-full bg-gradient-to-r from-purple-400 to-indigo-400 hover:from-purple-500 hover:to-indigo-500 text-white font-medium py-4 px-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 mb-6" do %>
+      <div class="flex items-center justify-center gap-3">
+        <span class="text-xl font-light">+</span>
+        <span class="text-base">Add Event</span>
+      </div>
+    <% end %>
 
-<%= link_to "Add Event", new_event_path %>
+    <!-- Events List -->
+    <ul class="space-y-4">
+      <% @events.order(:date).each do |e| %>
+        <li>
+          <%= link_to event_path(e), class: "block bg-white rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5" do %>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <!-- Calendar Icon -->
+                <div class="w-16 h-16 bg-gradient-to-br from-pink-300 to-pink-400 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
+                  </svg>
+                </div>
 
-<ul>
-  <% @events.order(:date).each do |e| %>
-    <li>
-      <%= link_to "#{e.name} – #{e.date}", event_path(e) %>
-    </li>
-  <% end %>
-</ul>
+                <div>
+                  <h3 class="text-lg font-medium text-gray-800 mb-1"><%= e.name %></h3>
+                  <div class="flex items-center gap-2 text-gray-500 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6" stroke-width="2"/>
+                      <line x1="8" y1="2" x2="8" y2="6" stroke-width="2"/>
+                      <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
+                    </svg>
+                    <span><%= e.date. strftime("%B %d, %Y") %></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chevron Arrow -->
+              <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
