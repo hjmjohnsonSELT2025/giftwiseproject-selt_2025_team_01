@@ -1,4 +1,4 @@
-<!-- Cute Gift Recipients Header -->
+<!-- Header -->
 <div class="pt-8 pb-2 px-2 bg-[#fef8f9]">
   <div class="max-w-4xl mx-auto">
     <h1 class="text-xl font-bold text-gray-700">Your Gift Recipients</h1>
@@ -8,50 +8,21 @@
 
 <!-- Add Recipient Button -->
 <div class="flex items-center max-w-4xl mx-auto w-full px-2 mb-8">
-  <%= link_to new_recipient_path, class: "bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] flex items-center justify-center gap-2 text-gray-700 font-semibold text-base px-5 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg w-full" do %>
-      <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5">
-        <!-- Plus Icon -->
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14m7-7H5"/></svg>
-      </span>
-    Add Recipient
-  <% end %>
+  <%= render 'shared/action_button',
+             label: 'Add Recipient',
+             path: new_recipient_path,
+             color_classes: 'bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] text-gray-700',
+             icon_svg: '<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14m7-7H5"/></svg>'.html_safe,
+             full_width: true %>
 </div>
 
 <!-- Recipients List -->
 <div class="max-w-4xl mx-auto w-full px-2">
   <ul class="space-y-4">
-    <% @recipients.each_with_index do |r, i| %>
+    <% bg_colors = ['bg-gradient-to-br from-pink-400 to-pink-500', 'bg-gradient-to-br from-blue-400 to-purple-500', 'bg-gradient-to-br from-yellow-300 to-orange-400'] %>
+    <% @recipients.each_with_index do |recipient, i| %>
       <li>
-        <%= link_to recipient_path(r), class: "block bg-white rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5" do %>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4">
-              <!-- Gift Icon -->
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
-                   style="background:  <%= [
-                     'linear-gradient(135deg,#ffb6b9,#fd79a8)',
-                     'linear-gradient(135deg,#b6b9ff,#a879fd)',
-                     'linear-gradient(135deg,#ffe29b,#fdd579)'
-                   ][i % 3] %>;">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="8" width="18" height="4" rx="1"></rect>
-                  <path d="M12 8v13"></path>
-                  <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
-                  <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
-                </svg>
-              </div>
-
-              <div>
-                <h3 class="text-lg font-medium text-gray-800 mb-1"><%= r.name %></h3>
-                <div class="text-gray-500 text-sm">Click to view gift ideas</div>
-              </div>
-            </div>
-
-            <!-- Chevron Arrow -->
-            <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </div>
-        <% end %>
+        <%= render RecipientCardComponent.new(recipient: recipient, bg_color: bg_colors[i % bg_colors.size]) %>
       </li>
     <% end %>
   </ul>

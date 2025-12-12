@@ -91,3 +91,4 @@ end
 
 gem "tailwindcss-rails"
 gem 'cssbundling-rails'
+gem 'view_component', '~> 3.2'

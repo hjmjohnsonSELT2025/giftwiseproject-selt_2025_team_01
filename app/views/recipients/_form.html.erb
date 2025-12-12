@@ -1,20 +1,7 @@
-<!--
-NOTE:
-This is a partial form for recipients (_form.html.erb), used by both
-new.html.erb and edit.html.erb to avoid duplicating form code.
-
-Key points to remember:
-- `form_with model: @recipient` automatically sets the correct URL and HTTP method
-  depending on whether @recipient is a new record (POST /users/:id) or persisted (PATCH /users/:id)
-- `local: true` disables remote AJAX submission
-- `f.label` and `f.text_field` / `f.text_area` / `f.number_field` generate the form inputs tied to model attributes
-- Validation errors are displayed at the top if @recipient has any
-- Using a partial keeps forms DRY, any changes to the form only need to be made here
--->
-<%= form_with model: @recipient, local: true do |f| %>
+<%= form_with model: @recipient, local: true, class: "space-y-4" do |f| %>
   <% if @recipient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
+    <div class="text-red-600">
+      <h2><%= pluralize(@recipient.errors.count, "error") %> prevented saving:</h2>
       <ul>
         <% @recipient.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -23,32 +10,14 @@ Key points to remember:
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
+  <% [:name, :age, :relationship, :hobbies, :dislikes].each do |field| %>
+    <div>
+      <%= f.label field, class: "block font-medium mb-1" %>
+      <%= f.text_field field, class: "w-full border rounded px-3 py-2" %>
+    </div>
+  <% end %>
 
   <div>
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
-
-  <div>
-    <%= f.label :relationship %><br>
-    <%= f.text_field :relationship %>
-  </div>
-
-  <div>
-    <%= f.label :hobbies %><br>
-    <%= f.text_area :hobbies %>
-  </div>
-
-  <div>
-    <%= f.label :dislikes %><br>
-    <%= f.text_area :dislikes %>
-  </div>
-
-  <div>
-    <%= f.submit %>
+    <%= f.submit class: "px-6 py-3 bg-gradient-to-r from-pink-400 to-pink-500 text-white rounded-xl font-medium hover:shadow-lg transition-all" %>
   </div>
 <% end %>
