@@ -1,18 +1,17 @@
 <%= link_to recipient_path(@recipient), class: "block bg-white rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5" do %>
   <div class="flex items-center gap-4">
-    <%= render 'shared/icon',
-               name: 'gift',
-               size: 32,
-               color: 'text-white',
-               bg_style: [
-                 'linear-gradient(135deg,#ffb6b9,#fd79a8)',
-                 'linear-gradient(135deg,#b6b9ff,#a879fd)',
-                 'linear-gradient(135deg,#ffe29b,#fdd579)'
-               ][@index % 3] %>
+
+    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center flex-shrink-0">
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/>
+      </svg>
+    </div>
+
     <div class="flex-1">
       <h3 class="text-lg font-medium text-gray-800"><%= @recipient.name %></h3>
       <p class="text-gray-500 text-sm mt-1">Click to view gift ideas</p>
     </div>
+
     <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6"></path>
     </svg>
