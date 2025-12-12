@@ -1,17 +1,17 @@
-<script src="https://api.duosecurity.com/frame/hosted/Duo-Web-v2.js" type="text/javascript"></script>
+<h1>Two-Factor Authentication</h1>
 
-<iframe id="duo_iframe"
-        data-host="<%= DUO['DUO_HOST'] %>"
-        data-sig-request="<%= @sig_request %>"
-        data-post-action="<%= duo_verify_path %>">
+<p>Please complete Duo authentication to finish logging in.</p>
+
+<!-- Duo hosted JS (v2) -->
+<script src="https://api.duosecurity.com/frame/hosted/Duo-Web-v2.js"></script>
+
+<iframe
+  id="duo_iframe"
+  title="Duo two-factor authentication"
+  frameborder="0"
+  style="width: 100%; max-width: 500px; height: 400px; border: 1px solid #ccc;"
+  data-host="<%= DUO['DUO_HOST'] %>"
+  data-sig-request="<%= @sig_request %>"
+  data-post-action="<%= duo_verify_path %>"
+  data-post-argument="sig_response">
 </iframe>
-
-<style>
-    #duo_iframe {
-        width: 100%;
-        min-width: 304px;
-        max-width: 620px;
-        height: 330px;
-        border: none;
-    }
-</style>
