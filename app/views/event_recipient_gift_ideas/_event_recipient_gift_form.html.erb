@@ -1,8 +1,11 @@
 <%= form_with model: gift_idea, url: url, local: true do |f| %>
+
   <% if gift_idea.errors.any? %>
-    <div style="color: red;">
-      <h2><%= pluralize(gift_idea.errors.count, "error") %> prohibited this gift idea from being saved:</h2>
-      <ul>
+    <div class="mb-6 bg-red-50 border border-red-200 p-4 rounded-xl text-red-700">
+      <h2 class="font-semibold mb-2">
+        <%= pluralize(gift_idea.errors.count, "error") %> prevented this gift from being saved:
+      </h2>
+      <ul class="list-disc ml-6">
         <% gift_idea.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -10,20 +13,12 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+  <%= render FormFieldComponent.new(form: f, field: :title) %>
+  <%= render FormFieldComponent.new(form: f, field: :notes, type: :text_area, options: { rows: 4 }) %>
+  <%= render FormFieldComponent.new(form: f, field: :url) %>
 
-  <p>
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
-  </p>
-
-  <p>
-    <%= f.label :url, "URL" %><br>
-    <%= f.text_field :url %>
-  </p>
-
-  <p><%= f.submit submit_label || "Save" %></p>
+  <div class="mt-6">
+    <%= f.submit submit_label || "Save",
+                 class: "w-full bg-gradient-to-r from-purple-400 to-indigo-400 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200" %>
+  </div>
 <% end %>
