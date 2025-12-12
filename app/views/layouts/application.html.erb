@@ -13,7 +13,7 @@
 <body class="bg-[#fef8f9] font-sans text-gray-800 min-h-screen flex flex-col">
 <!-- Header -->
 <% if current_user %>
-  <header class="bg-white shadow-sm border-b border-gray-100 py-4 px-6">
+  <header class="shadow-sm border-b border-gray-100 py-4 px-6 bg-white">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <!-- Left side:  Logo and Welcome -->
       <div class="flex items-center gap-4">
@@ -35,7 +35,7 @@
 
       <!-- Right side: Navigation buttons -->
       <nav class="flex items-center gap-3">
-        <%= link_to recipients_path, class: "flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-gradient-to-r from-[#b6b9ff] to-[#a879fd] hover:bg-gray-50 transition-all duration-200 text-sm font-medium" do %>
+        <%= link_to recipients_path, class: "flex items-center gap-2 px-4 py-2 rounded-lg text-[#7B7578] bg-[#E5D6F0] hover:shadow-md transition-all duration-200 text-sm font-medium" do %>
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <rect x="3" y="8" width="18" height="4" rx="1"></rect>
             <path d="M12 8v13"></path>
@@ -45,7 +45,7 @@
           Recipients
         <% end %>
 
-        <%= link_to events_path, class: "flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-[#b6b9ff] to-[#a879fd] text-white hover:shadow-md transition-all duration-200 text-sm font-semibold" do %>
+        <%= link_to events_path, class: "flex items-center gap-2 px-4 py-2 rounded-lg text-[#7B7578] bg-[#E5D6F0] hover:shadow-md transition-all duration-200 text-sm font-semibold" do %>
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -56,12 +56,10 @@
         <% end %>
 
         <% if current_user.profile %>
-          <%= link_to profile_path(current_user.profile), class: "flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-[#b6b9ff] to-[#a879fd] text-white hover:shadow-md transition-all duration-200 text-sm font-semibold" do %>
+          <%= link_to profile_path(current_user.profile), class: "flex items-center gap-2 px-4 py-2 rounded-lg text-[#7B7578] bg-[#E5D6F0] hover:shadow-md transition-all duration-200 text-sm font-semibold" do %>
             <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <circle cx="12" cy="7" r="4" />
+              <path d="M5.5 21a7.5 7.5 0 0113 0" />
             </svg>
             Profile
           <% end %>
@@ -100,7 +98,7 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-white shadow-sm border-t border-gray-100 p-4 mt-10 text-center text-sm text-gray-400">
+<footer class="shadow-sm p-4 mt-10 text-center text-sm text-gray-400">
   © 2025 GiftWise
 </footer>
 </body>
