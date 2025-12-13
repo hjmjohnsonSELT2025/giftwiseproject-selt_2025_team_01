@@ -35,6 +35,9 @@
 /config/master.key
 
 .idea/
+.rbs_collection/
+.gem_rbs_collection/
+**/AppData/
 
 # Ignore uploaded files in development
 /public/uploads/*

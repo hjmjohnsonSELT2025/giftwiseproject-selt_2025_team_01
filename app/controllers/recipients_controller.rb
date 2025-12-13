@@ -1,5 +1,5 @@
 class RecipientsController < ApplicationController
-  before_action :require_login
+  #before_action :require_login
   before_action :set_recipient, only: [:edit, :update, :destroy, :show]
 
   # [MODEL & VIEW] Lists all recipients.
@@ -87,7 +87,7 @@ class RecipientsController < ApplicationController
 
   # [CONTROLLER] Authentication guard.
   # Ensures no actions in this controller can be accessed unless a user is logged in.
-  def require_login
-    redirect_to login_path unless current_user
-  end
+  #def require_login
+  #  redirect_to login_path unless current_user
+  #end
 end

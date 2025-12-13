@@ -34,6 +34,7 @@ export default class extends Controller {
             }
 
             const suggestion = await response.json();
+
             // Update the targets
             this.titleTarget.value = suggestion.title || '';
             this.notesTarget.value = suggestion.notes || '';
