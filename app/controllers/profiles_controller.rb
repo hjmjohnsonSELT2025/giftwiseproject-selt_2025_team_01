@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
   end
 
   def authorize_user!
-    unless @profile.user_id == session[:user_id]
+    unless @profile.user_id == current_user.id
       redirect_to @profile, alert: "You are not allowed to edit this profile."
     end
   end

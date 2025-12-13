@@ -17,23 +17,23 @@ RSpec.describe "GiftIdeas", type: :request do
   end
 
 
-  def log_in_as(u)
-    post login_path, params: {
-      email: u.email,
-      password: "password"
-    }
-  end
+  #def log_in_as(u)
+  #  post login_path, params: {
+  #    email: u.email,
+  #    password: "password"
+  #  }
+  #end
 
 
 
   describe "GET /recipients/:recipient_id/gift_ideas" do
     it "redirects to login when not logged in" do
       get new_recipient_gift_idea_path(recipient)
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "returns success when logged in" do
-      log_in_as(user)
+      sign_in(user)
 
       get new_recipient_gift_idea_path(recipient)
 
@@ -52,11 +52,11 @@ RSpec.describe "GiftIdeas", type: :request do
         }
       }
 
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "creates a new gift idea when logged in" do
-      log_in_as(user)
+      sign_in(user)
 
       expect {
         post recipient_gift_ideas_path(recipient), params: {
@@ -78,7 +78,7 @@ RSpec.describe "GiftIdeas", type: :request do
     end
 
     it "handles validation errors" do
-      log_in_as(user)
+      sign_in(user)
 
       post recipient_gift_ideas_path(recipient), params: {
         gift_idea: {
@@ -102,11 +102,11 @@ RSpec.describe "GiftIdeas", type: :request do
     end
     it "redirects to login when not logged in" do
       delete recipient_gift_idea_path(recipient, gift_idea)
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "deletes the gift idea when logged in" do
-      log_in_as(user)
+      sign_in(user)
       gift_idea # create the gift idea
 
       expect {
@@ -131,11 +131,11 @@ RSpec.describe "GiftIdeas", type: :request do
 
     it "redirects to login when not logged in" do
       get edit_recipient_gift_idea_path(recipient, gift_idea)
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "returns success when logged in" do
-      log_in_as(user)
+      sign_in(user)
 
       get edit_recipient_gift_idea_path(recipient, gift_idea)
 
@@ -160,11 +160,11 @@ RSpec.describe "GiftIdeas", type: :request do
         gift_idea: { title: "Updated Title" }
       }
 
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "updates the gift idea when logged in" do
-      log_in_as(user)
+      sign_in(user)
 
       patch recipient_gift_idea_path(recipient, gift_idea), params: {
         gift_idea: {
@@ -184,7 +184,7 @@ RSpec.describe "GiftIdeas", type: :request do
     end
 
     it "shows success message after updating" do
-      log_in_as(user)
+      sign_in(user)
 
       patch recipient_gift_idea_path(recipient, gift_idea), params: {
         gift_idea: { title: "Updated Title" }
@@ -195,7 +195,7 @@ RSpec.describe "GiftIdeas", type: :request do
     end
 
     it "handles validation errors" do
-      log_in_as(user)
+      sign_in(user)
 
       patch recipient_gift_idea_path(recipient, gift_idea), params: {
         gift_idea: { title: "" }
