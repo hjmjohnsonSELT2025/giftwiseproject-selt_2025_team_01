@@ -92,3 +92,12 @@ end
 gem "tailwindcss-rails"
 gem 'cssbundling-rails'
 gem 'view_component', '~> 3.2'
+
+# Devise gem
+gem "devise", "~> 4.9"
+
+# OMNIAUTH GEMS
+gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+gem "omniauth"
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
