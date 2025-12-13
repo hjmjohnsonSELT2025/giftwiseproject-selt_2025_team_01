@@ -10,8 +10,7 @@ PROFILE_SAVE_BUTTONS = ['Save Profile', 'Save', 'Update Profile', 'Update', 'Sav
 
 Given(/^I am on the sign up page$/) do
   # try common signup URLs
-  path = GIVEN_SIGNUP_PATHS.find { |p| visit(p); page.status_code == 200 rescue true }
-  visit('/signup') unless path # default
+  visit new_user_registration_path
 end
 
 When(/^I sign up with the following email and password:$/) do |table|
@@ -150,7 +149,7 @@ Given(/^an existing user with a profile$/) do
 end
 
 Given(/^I am logged in as that user$/) do
-  visit login_path
+  visit new_user_session_path
 
   if page.has_field?("Email")
     fill_in "Email", with: @user.email
@@ -180,7 +179,7 @@ end
 
 When(/^I visit my profile edit page$/) do
   raise "No @profile set" unless @profile
-  visit "/profiles/#{@profile.id}/edit"
+  visit edit_profile_path(@profile)
 end
 
 Then(/^the profile should have the following attributes:$/) do |table|
@@ -229,5 +228,5 @@ end
 
 When(/^I try to visit the other user's profile edit page$/) do
   raise "No @other_profile set" unless @other_profile
-  visit "/profiles/#{@other_profile.id}/edit"
+  visit edit_profile_path(@profile)
 end
