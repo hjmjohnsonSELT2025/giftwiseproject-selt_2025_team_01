@@ -85,8 +85,18 @@ group :development, :test do
   gem "faker"
 end
 
+#OPENAI GEMS
 gem "ruby-openai", "~> 8.3"
 
 group :development, :test do
   gem 'dotenv-rails'
 end
+
+# Devise gem
+gem "devise", "~> 4.9"
+
+# OMNIAUTH GEMS
+gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+gem "omniauth"
+gem 'omniauth-rails_csrf_protection', '~> 1.0'

@@ -1,6 +1,6 @@
 # Description: Controller for managing user profiles in the GiftWise application.
 class ProfilesController < ApplicationController
-  before_action :require_login
+  #before_action :require_login
   before_action :set_profile
   before_action :authorize_user!, only: [:edit, :update]
 
@@ -29,12 +29,12 @@ class ProfilesController < ApplicationController
   end
 
   def authorize_user!
-    unless @profile.user_id == session[:user_id]
+    unless @profile.user_id == current_user.id
       redirect_to @profile, alert: "You are not allowed to edit this profile."
     end
   end
 
-  def require_login
-    redirect_to login_path unless session[:user_id]
-  end
+  #def require_login
+  #  redirect_to login_path unless session[:user_id]
+  #end
 end

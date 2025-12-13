@@ -5,7 +5,7 @@ RSpec.describe ProfilesController, type: :controller do
   let(:profile) { Profile.create(user: user, name: "Test User") }
 
   before do
-    session[:user_id] = user.id
+    sign_in user
   end
 
   describe "GET #show" do
@@ -22,8 +22,8 @@ RSpec.describe ProfilesController, type: :controller do
     end
 
     it "redirects if editing another user's profile" do
-      other_user = User.create(email: "other@example.com", password: "password")
-      other_profile = Profile.create(user: other_user)
+      other_user = User.create!(email: "other@example.com", password: "password")
+      other_profile = other_user.profile || Profile.create(user: other_user, name: "Other User")
 
       get :edit, params: { id: other_profile.id }
       expect(response).to redirect_to(profile_path(other_profile))
