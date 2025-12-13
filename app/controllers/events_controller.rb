@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   # [CONTROLLER] Ensure the user is logged in before accessing any event actions.
-  before_action :require_login
+  #before_action :require_login
 
   # [MODEL] Fetches the Event instance for certain actions to avoid repeating code.
   # Ensures users can only edit/update/destroy/show their own events.

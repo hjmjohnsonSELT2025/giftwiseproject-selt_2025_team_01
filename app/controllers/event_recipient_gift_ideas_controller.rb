@@ -1,5 +1,5 @@
 class EventRecipientGiftIdeasController < ApplicationController
-  before_action :require_login
+  #before_action :require_login
   before_action :set_event
   before_action :set_recipient
   before_action :set_event_recipient
@@ -80,9 +80,9 @@ class EventRecipientGiftIdeasController < ApplicationController
     params.require(:event_recipient_gift_idea).permit(:title, :notes, :url)
   end
 
-  def require_login
-    redirect_to login_path unless current_user
-  end
+  #def require_login
+  #  redirect_to login_path unless current_user
+  #end
 
   def generate_ai_suggestion(recipient)
     # Build a prompt based on recipient's profile

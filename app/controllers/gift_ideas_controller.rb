@@ -1,5 +1,5 @@
 class GiftIdeasController < ApplicationController
-  before_action :require_login
+  #before_action :require_login
   before_action :set_recipient
   before_action :set_gift_idea, only: [:edit, :update, :destroy]
 
