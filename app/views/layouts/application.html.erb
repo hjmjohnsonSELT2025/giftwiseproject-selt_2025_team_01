@@ -65,8 +65,8 @@
           <% end %>
         <% end %>
 
-        <%= link_to logout_path, method: :delete,
-                    data: { turbo_method: :delete, confirm:  "Are you sure you want to log out?" },
+        <%= link_to destroy_user_session_path, method: :delete,
+                    data: { turbo_method: :delete, confirm: "Are you sure you want to log out?" },
                     class: "flex items-center gap-2 px-4 py-2 rounded-lg text-gray-500 hover:bg-gray-50 transition-all duration-200 text-sm font-medium" do %>
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
