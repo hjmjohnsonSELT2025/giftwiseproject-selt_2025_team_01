@@ -1,25 +1,30 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
-<% end %>
+<div class="mt-6 text-center space-y-2 text-sm">
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+  <%# Log In / Sign Up switch %>
+  <% if controller_name == "sessions" %>
+    <span class="text-gray-500">Don't have an account?</span>
+    <%= link_to "Sign Up", new_registration_path(resource_name),
+                class: "inline-block px-4 py-2 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-100 transition" %>
+  <% elsif controller_name == "registrations" %>
+    <span class="text-gray-500">Already have an account?</span>
+    <%= link_to "Log In", new_session_path(resource_name),
+                class: "inline-block px-4 py-2 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-100 transition" %>
   <% end %>
-<% end %>
+
+  <%# Resend Confirmation Instructions %>
+  <% if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <div>
+      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name),
+                  class: "inline-block px-3 py-1 text-gray-500 hover:text-gray-700 hover:underline transition" %>
+    </div>
+  <% end %>
+
+  <%# Resend Unlock Instructions %>
+  <% if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <div>
+      <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name),
+                  class: "inline-block px-3 py-1 text-gray-500 hover:text-gray-700 hover:underline transition" %>
+    </div>
+  <% end %>
+
+</div>
