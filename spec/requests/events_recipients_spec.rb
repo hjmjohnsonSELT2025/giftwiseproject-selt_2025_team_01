@@ -9,7 +9,8 @@ RSpec.describe "Event Recipient Management", type: :request do
   let!(:other_event){ other_user.events.create!(name: "Other Event", date: Date.today) }
 
   before do
-    post login_path, params: { email: user.email, password: "pass123" }
+    #post new_user_session_path, params: { email: user.email, password: "pass123" }
+    sign_in(user)
   end
 
   describe "POST /events/:id/add_recipient" do

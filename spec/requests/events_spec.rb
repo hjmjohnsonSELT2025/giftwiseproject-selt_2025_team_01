@@ -17,16 +17,16 @@ RSpec.describe "Events", type: :request do
     )
   end
 
-  def log_in_as(u)
-    post login_path, params: { email: u.email, password: "password123" }
-    # same pattern as your Users request spec
-    session[:user_id] = u.id
-  end
+  #def log_in_as(u)
+  #  post login_path, params: { email: u.email, password: "password123" }
+  #  # same pattern as your Users request spec
+  #  session[:user_id] = u.id
+  #end
 
   describe "GET /events" do
     it "redirects to login when not logged in" do
       get events_path
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "shows only the logged-in user's events" do
@@ -41,7 +41,8 @@ RSpec.describe "Events", type: :request do
         date: Date.new(2025, 1, 1)
       )
 
-      log_in_as(user)
+      #log_in_as(user)
+      sign_in(user)
       get events_path
 
       expect(response).to have_http_status(:success)
@@ -53,7 +54,7 @@ RSpec.describe "Events", type: :request do
   end
 
   describe "POST /events" do
-    before { log_in_as(user) }
+    before { sign_in(user) }
 
     it "creates an event with valid attributes and redirects to index" do
       expect {
@@ -101,7 +102,7 @@ RSpec.describe "Events", type: :request do
     end
 
     context "when logged in as the owner" do
-      before { log_in_as(user) }
+      before { sign_in(user) }
 
       it "updates the event with valid data and redirects to index" do
         patch event_path(event), params: {
@@ -136,7 +137,7 @@ RSpec.describe "Events", type: :request do
     end
 
     context "when logged in as a different user" do
-      before { log_in_as(other_user) }
+      before { sign_in(other_user) }
 
       it "does not allow editing and redirects with alert" do
         patch event_path(event), params: {
@@ -163,7 +164,7 @@ RSpec.describe "Events", type: :request do
     end
 
     context "when logged in as the owner" do
-      before { log_in_as(user) }
+      before { sign_in(user) }
 
       it "deletes the event and redirects to index" do
         expect {
@@ -178,7 +179,7 @@ RSpec.describe "Events", type: :request do
     end
 
     context "when logged in as another user" do
-      before { log_in_as(other_user) }
+      before { sign_in(other_user) }
 
       it "does not delete the event and redirects with alert" do
         expect {
