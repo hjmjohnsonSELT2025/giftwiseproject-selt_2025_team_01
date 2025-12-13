@@ -3,11 +3,18 @@
   <div class="flex justify-between items-center mb-2">
     <h3 class="text-lg font-medium text-gray-800"><%= @recipient.name %></h3>
 
-    <%= button_to "Remove",
-                  remove_recipient_event_path(@event, recipient_id: @recipient.id),
-                  method: :delete,
-                  data: { confirm: "Remove #{@recipient.name} from this event?" },
-                  class: "text-red-500 text-sm" %>
+    <% if @action == :remove %>
+      <%= button_to "Remove",
+                    remove_recipient_event_path(@event, recipient_id: @recipient.id),
+                    method: :delete,
+                    data: { confirm: "Remove #{@recipient.name} from this event?" },
+                    class: "text-red-500 text-sm" %>
+    <% elsif @action == :add %>
+      <%= button_to "Add",
+                    add_recipient_event_path(@event, recipient_id: @recipient.id),
+                    method: :post,
+                    class: "text-green-500 text-sm" %>
+    <% end %>
   </div>
 
   <div class="pl-4">

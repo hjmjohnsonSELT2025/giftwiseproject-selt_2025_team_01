@@ -20,15 +20,20 @@
   <!-- Event details -->
   <%= render EventDetailsComponent.new(event: @event) %>
 
-  <!-- Recipients -->
+  <!-- Event recipients -->
   <h2 class="text-lg font-semibold text-gray-700 mb-4">Recipients</h2>
-  <% @event.recipients.each do |recipient| %>
-    <%= render EventRecipientCardComponent.new(event: @event, recipient: recipient) %>
-  <% end %>
+  <div id="event-recipients">
+    <% @event.recipients.each do |recipient| %>
+      <%= render EventRecipientCardComponent.new(event: @event, recipient: recipient, action: :remove) %>
+    <% end %>
+  </div>
 
-  <%= render AvailableRecipientsComponent.new(
-    event: @event,
-    recipients: current_user.recipients - @event.recipients
-  ) %>
+  <!-- Available recipients -->
+  <div id="available-recipients" class="mt-6">
+    <%= render AvailableRecipientsComponent.new(
+      event: @event,
+      recipients: current_user.recipients - @event.recipients
+    ) %>
+  </div>
 
 </div>
