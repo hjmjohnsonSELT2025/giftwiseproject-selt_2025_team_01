@@ -20,10 +20,13 @@ Given('I have a recipient named {string}') do |name|
 end
 
 When('I click {string} for {string}') do |action, item|
-  within(:xpath, "//*[contains(text(),'#{item}')]/..") do
+  gift = GiftIdea.find_by!(title: item)
+
+  within("#gift_idea_#{gift.id}") do
     click_link_or_button action
   end
 end
+
 
 Given('{string} has the following gift ideas:') do |recipient_name, table|
   recipient = Recipient.find_by!(name: recipient_name)

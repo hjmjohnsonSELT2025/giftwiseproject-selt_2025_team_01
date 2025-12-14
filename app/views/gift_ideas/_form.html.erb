@@ -15,7 +15,7 @@
 
   <%= render FormFieldComponent.new(form: f, field: :title, options: { data: { gift_idea_target: "title" } }) %>
   <%= render FormFieldComponent.new(form: f, field: :notes, type: :text_area, options: { rows: 4, data: { gift_idea_target: "notes" } }) %>
-  <%= render FormFieldComponent.new(form: f, field: :url, options: { data: { gift_idea_target: "url" } }) %>
+  <%= render FormFieldComponent.new(form: f, field: :url, label: "Link", options: { data: { gift_idea_target: "url" } }) %>
 
   <div class="mt-6 flex flex-col sm:flex-row gap-3">
     <button type="button"

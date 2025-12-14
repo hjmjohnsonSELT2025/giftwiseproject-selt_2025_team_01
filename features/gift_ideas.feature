@@ -15,8 +15,8 @@ Feature: Add Gift Ideas
     Given I am on the new gift ideas page for "Mom"
     When I fill in "Title" with "Spa Day Package"
     And I fill in "Notes" with "Relaxing spa treatment at local spa"
-    And I fill in "URL" with "https://example.com/spa"
-    And I press "Create Gift Idea"
+    And I fill in "Link" with "https://example.com/spa"
+    And I press "Save Gift Idea"
     Then I should see "Gift idea was successfully created"
     And I should see "Spa Day Package"
     And I should see "Relaxing spa treatment at local spa"
@@ -24,25 +24,25 @@ Feature: Add Gift Ideas
   Scenario: Add a gift idea with only required fields
     Given I am on the new gift ideas page for "Mom"
     When I fill in "Title" with "Coffee Maker"
-    And I press "Create Gift Idea"
+    And I press "Save Gift Idea"
     Then I should see "Gift idea was successfully created"
     And I should see "Coffee Maker"
 
   Scenario: Fail to add a gift idea without a title
     Given I am on the new gift ideas page for "Mom"
     When I fill in "Notes" with "Some notes"
-    And I press "Create Gift Idea"
+    And I press "Save Gift Idea"
     Then I should see "Title can't be blank"
     And I should not see "Gift idea was successfully created"
 
   Scenario: Add multiple gift ideas to the same recipient
     Given I am on the new gift ideas page for "Mom"
     When I fill in "Title" with "Book Collection"
-    And I press "Create Gift Idea"
+    And I press "Save Gift Idea"
     Then I should see "Gift idea was successfully created"
     When I follow "Add Gift Idea"
     And I fill in "Title" with "Garden Tools"
-    And I press "Create Gift Idea"
+    And I press "Save Gift Idea"
     Then I should see "Gift idea was successfully created"
     And I should see "Book Collection"
     And I should see "Garden Tools"
@@ -50,8 +50,8 @@ Feature: Add Gift Ideas
   Scenario: Add gift idea with a URL
     Given I am on the new gift ideas page for "Mom"
     When I fill in "Title" with "Smart Watch"
-    And I fill in "URL" with "https://amazon.com/watch"
-    And I press "Create Gift Idea"
+    And I fill in "Link" with "https://amazon.com/watch"
+    And I press "Save Gift Idea"
     Then I should see "Gift idea was successfully created"
     And I should see a link to "https://amazon.com/watch"
 
