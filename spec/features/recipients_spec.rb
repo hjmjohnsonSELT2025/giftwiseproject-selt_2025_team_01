@@ -5,10 +5,10 @@ RSpec.feature "Recipients Management", type: :feature do
 
   before do
     # Log in the user before each scenario
-    visit login_path
+    visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: "pass123"
-    click_button "Log In"
+    click_button "Log in"
   end
 
   scenario "User sees empty recipients list initially" do
@@ -80,7 +80,7 @@ RSpec.feature "Recipients Management", type: :feature do
   scenario "Unauthenticated access redirects to login" do
     click_link "Log Out"
     visit recipients_path
-    expect(current_path).to eq(login_path)
-    expect(page).to have_content("Log In")
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content("Log in")
   end
 end

@@ -28,23 +28,24 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
     EventRecipient.create!(event: event, recipient: recipient)
   end
 
-  def log_in_as(u)
-    post login_path, params: {
-      email: u.email,
-      password: "password"
-    }
-  end
+  #def log_in_as(u)
+  #  post new_user_session_path, params: {
+  #    email: u.email,
+  #    password: "password"
+  #  }
+  #end
 
 
 
   describe "GET /events/:event_id/recipients/:recipient_id/gift_ideas" do
     it "redirects to login when not logged in" do
       get event_recipient_gift_ideas_path(event, recipient)
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "redirects to the event show page when logged in" do
-      log_in_as(user)
+      #log_in_as(user)
+      sign_in(user)
       get event_recipient_gift_ideas_path(event, recipient)
       expect(response).to redirect_to(event_path(event))
     end
@@ -55,11 +56,12 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
   describe "POST /events/:event_id/recipients/:recipient_id/gift_ideas" do
     it "redirects to login when not logged in" do
       post event_recipient_gift_ideas_path(event, recipient), params: { event_recipient_gift_idea: { title: "New Gift" } }
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "creates a new gift idea when logged in" do
-      log_in_as(user)
+      #log_in_as(user)
+      sign_in(user)
 
       expect {
         post event_recipient_gift_ideas_path(event, recipient), params: {
@@ -79,7 +81,8 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
     end
 
     it "handles validation errors" do
-      log_in_as(user)
+      #log_in_as(user)
+      sign_in(user)
       post event_recipient_gift_ideas_path(event, recipient), params: { event_recipient_gift_idea: { title: "" } }
       expect(response).to have_http_status(:unprocessable_entity)
     end
@@ -99,11 +102,12 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
 
     it "redirects to login when not logged in" do
       delete event_recipient_gift_idea_path(event, recipient, gift)
-      expect(response).to redirect_to(login_path)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "deletes the gift idea when logged in" do
-      log_in_as(user)
+      #log_in_as(user)
+      sign_in(user)
       expect {
         delete event_recipient_gift_idea_path(event, recipient, gift)
       }.to change(EventRecipientGiftIdea, :count).by(-1)
@@ -124,7 +128,8 @@ RSpec.describe "EventRecipientGiftIdeas", type: :request do
     end
 
     it "updates the gift idea when logged in" do
-      log_in_as(user)
+      #log_in_as(user)
+      sign_in(user)
       patch event_recipient_gift_idea_path(event, recipient, gift), params: {
         event_recipient_gift_idea: { title: "Updated Spa Package" }
       }

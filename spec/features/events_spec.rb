@@ -7,10 +7,10 @@ RSpec.feature "Event Recipient Management", type: :feature do
   let!(:event) { user.events.create!(name: "Birthday Party", date: Date.today) }
 
   before do
-    visit login_path
+    visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: "pass123"
-    click_button "Log In"
+    click_button "Log in"
   end
 
   scenario "User adds a recipient to an event" do

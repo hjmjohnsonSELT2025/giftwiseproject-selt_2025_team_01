@@ -10,8 +10,10 @@ Feature: Profile attributes on signup
       | email      | alice@example.com     |
       | password   | password123           |
       | password_confirmation | password123 |
-    Then I click the edit profile button
-    When I fill in the profile form with the following details:
+    Then I should see "Welcome! You have signed up successfully"
+    When I click on "View Profile"
+    And I click on "Edit Profile"
+    And I fill in the profile form with the following details:
       | name       | Alice Example         |
       | age        | 30                    |
       | occupation | Software Engineer     |

@@ -1,9 +1,9 @@
 Given('I am on the signup page') do
-  visit '/signup'
+  visit new_user_registration_path
 end
 
 Given('I am on the login page') do
-  visit '/login'
+  visit new_user_session_path
 end
 
 Given('I am on the home page') do
@@ -35,8 +35,9 @@ Given('a user exists with email {string} and password {string}') do |email, pass
 end
 
 Given('I am logged in as {string}') do |email|
-  visit '/login'
+  user = User.find_by(email: email)
+  visit new_user_session_path
   fill_in 'Email', with: email
   fill_in 'Password', with: 'password'
-  click_button 'Log In'
+  click_button 'Log in'
 end
