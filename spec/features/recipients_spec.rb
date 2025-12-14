@@ -13,7 +13,7 @@ RSpec.feature "Recipients Management", type: :feature do
 
   scenario "User sees empty recipients list initially" do
     visit recipients_path
-    expect(page).to have_content("Your Recipients")
+    expect(page).to have_content("Your Gift Recipients")
     expect(page).to have_link("Add Recipient")
     expect(page).not_to have_css("li")
   end
@@ -25,7 +25,7 @@ RSpec.feature "Recipients Management", type: :feature do
     fill_in "Relationship", with: "friend"
     fill_in "Hobbies", with: "Books, Coffee"
     fill_in "Dislikes", with: "Noise"
-    click_button "Create Recipient"
+    click_button "Save Recipient"
 
     # Redirects to show page of the newly created recipient
     recipient = user.recipients.last
@@ -48,7 +48,7 @@ RSpec.feature "Recipients Management", type: :feature do
     fill_in "Relationship", with: "best friend"
     fill_in "Hobbies", with: "Hiking, Photography"
     fill_in "Dislikes", with: "Lateness, Spicy food"
-    click_button "Update Recipient"
+    click_button "Save Recipient"
 
     expect(current_path).to eq(recipient_path(recipient))
     expect(page).to have_content("Recipient updated")
@@ -71,9 +71,9 @@ RSpec.feature "Recipients Management", type: :feature do
   scenario "Validations: cannot create recipient without a name" do
     visit new_recipient_path
     fill_in "Name", with: ""
-    click_button "Create Recipient"
+    click_button "Save Recipient"
 
-    expect(page).to have_content("prohibited this recipient from being saved")
+    expect(page).to have_content("1 error prevented saving")
     expect(page).to have_content("Name can't be blank")
   end
 
