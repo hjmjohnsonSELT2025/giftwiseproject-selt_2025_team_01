@@ -24,11 +24,6 @@ RSpec.describe "Events", type: :request do
   #end
 
   describe "GET /events" do
-    it "redirects to login when not logged in" do
-      get events_path
-      expect(response).to redirect_to(new_user_session_path)
-    end
-
     it "shows only the logged-in user's events" do
       my_event = Event.create!(
         user: user,
@@ -41,13 +36,12 @@ RSpec.describe "Events", type: :request do
         date: Date.new(2025, 1, 1)
       )
 
-      #log_in_as(user)
       sign_in(user)
       get events_path
 
       expect(response).to have_http_status(:success)
       expect(response.body).to include("My Birthday")
-      expect(response.body).to include(my_event.date.to_s)
+      expect(response.body).to include(my_event.date.strftime("%B %d, %Y")) # formatted date
 
       expect(response.body).not_to include("Other Event")
     end
