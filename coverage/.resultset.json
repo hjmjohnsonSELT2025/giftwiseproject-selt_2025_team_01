@@ -203,6 +203,9 @@
           null,
           1,
           null,
+          1,
+          0,
+          null,
           null,
           null,
           null,
@@ -380,7 +383,7 @@
           null,
           null,
           1,
-          4,
+          0,
           null,
           null
         ]
@@ -1061,28 +1064,8 @@
       },
       "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/mailers/application_mailer.rb": {
         "lines": [
-          0,
           null,
           null,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/mailers/password_reset_mailer.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
           0,
           0,
           0,
@@ -1182,6 +1165,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1765671599
+    "timestamp": 1765686958
   }
 }
