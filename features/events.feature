@@ -16,13 +16,13 @@ Feature: Manage Events
     And I press "Create Event"
     Then I should see "Event created!"
     And I should see "Birthday Party"
-    And I should see "2025-12-25"
+    And I should see "December 25, 2025"
 
   Scenario: Edit an existing event
     Given an event named "Anniversary" on "2025-01-01" for user "user@example.com"
     When I go to the events page
-    And I click on "Anniversary – 2025-01-01"
-    And I click on "Edit"
+    And I click on the event "Anniversary"
+    And I click the edit link for the current event
     And I fill in "Name" with "Updated Anniversary"
     And I press "Update Event"
     Then I should see "Event updated!"

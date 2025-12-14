@@ -77,3 +77,15 @@ Then('the recipient {string} should no longer be in {string}') do |recipient_nam
   expect(EventRecipient.exists?(event: event, recipient: recipient)).to be false
 end
 
+##################################
+# Updated steps to work w/ UI view
+##################################
+
+When(/^I click on the event "(.*)"$/) do |name|
+  @event = Event.find_by!(name: name)
+  find('h3', text: name).click
+end
+
+When(/^I click the edit link for the current event$/) do
+  visit edit_event_path(@event)
+end
