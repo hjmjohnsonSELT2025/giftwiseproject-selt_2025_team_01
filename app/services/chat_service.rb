@@ -44,7 +44,7 @@ class ChatService
       #    We use .with_indifferent_access for convenience in the controller
       return JSON.parse(json_string).with_indifferent_access
 
-    rescue JSON::ParserError, NoMethodError => e
+    rescue JSON::ParserError, NoMethodError, TypeError => e
       # Handle cases where the API fails or returns non-JSON data gracefully
       Rails.logger.error "AI Service Error: Failed to parse JSON response. #{e.message}"
       # Return a safe, known error hash
