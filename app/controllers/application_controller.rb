@@ -5,11 +5,14 @@ class ApplicationController < ActionController::Base
   #helper_method :current_user # makes it available in views too
 
   # All controllers inherit this automatically
-  before_action :authenticate_user! # redirects to login if not authenticated
+  before_action :authenticate_user!
   before_action :ensure_profile_exists
 
-  private
+  protected
 
+  def after_resetting_password_path_for(resource)
+    root_path
+  end
   # [MODEL & SESSION] Retrieves the currently logged-in user.
   # 1. Checks the 'session' (browser cookie storage) for a user_id.
   # 2. If found, queries the User Model to fetch the user's record from the database.
