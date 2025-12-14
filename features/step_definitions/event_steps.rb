@@ -61,10 +61,8 @@ When('I remove {string} from {string}') do |recipient_name, event_name|
   event = Event.find_by!(name: event_name, user: user)
   recipient = Recipient.find_by!(name: recipient_name, user: user)
 
-  visit event_path(event)
-  within("#event-recipients") do
-    li = find('li', text: recipient.name)
-    li.click_button('Remove')
+  within("div[data-recipient-id='#{recipient.id}']") do
+    click_button "Remove"
   end
 end
 

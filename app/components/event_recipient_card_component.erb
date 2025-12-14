@@ -1,6 +1,6 @@
-<div class="bg-white rounded-2xl shadow p-4 mb-4">
+<div data-recipient-id="<%= @recipient.id %>" class="bg-white rounded-2xl shadow p-4 mb-4">
 
-  <div class="flex justify-between items-center mb-2">
+<div class="flex justify-between items-center mb-2">
     <h3 class="text-lg font-medium text-gray-800"><%= @recipient.name %></h3>
 
     <% if @action == :remove %>

@@ -24,7 +24,8 @@
   <h2 class="text-lg font-semibold text-gray-700 mb-4">Recipients</h2>
   <div id="event-recipients">
     <% @event.recipients.each do |recipient| %>
-      <%= render EventRecipientCardComponent.new(event: @event, recipient: recipient, action: :remove) %>
+      <% event_recipient = EventRecipient.find_by(event: @event, recipient: recipient) %>
+      <%= render EventRecipientCardComponent.new(event: @event, recipient: recipient, event_recipient: event_recipient, action: :remove) %>
     <% end %>
   </div>
 
