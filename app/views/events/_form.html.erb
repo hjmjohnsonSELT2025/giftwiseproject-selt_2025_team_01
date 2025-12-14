@@ -1,6 +1,6 @@
-<%= form_with model: @event, local: true do |f| %>
+<%= form_with model: @event, local: true, html: { data: { turbo: false } } do |f| %>
 
-  <!-- Errors (you can restyle later) -->
+  <!-- Errors -->
   <% if @event.errors.any? %>
     <div class="mb-6 bg-red-50 border border-red-200 p-4 rounded-xl text-red-700">
       <h2 class="font-semibold mb-2">
