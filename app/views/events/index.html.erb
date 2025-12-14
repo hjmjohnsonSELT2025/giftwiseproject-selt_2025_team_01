@@ -1,18 +1,37 @@
-<h1>Your Events</h1>
+<div class="max-w-4xl mx-auto">
 
-<p>
-  Logged in as <%= current_user.email %> |
-  <%= link_to "View Profile", profile_path(current_user.profile) %> |
-  <%= link_to "View Recipients", recipients_path %> |
-  <%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?" } %>
-</p>
+  <!-- Header Section -->
+  <div class="pt-8 pb-2 px-2 bg-[#fef8f9]">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-xl font-bold text-gray-700">Your Events</h1>
+      <p class="text-gray-400 mt-1 mb-6 text-sm">
+        Track important dates and plan your gift giving
+      </p>
+    </div>
+  </div>
 
-<%= link_to "Add Event", new_event_path %>
+  <!-- Add Event Button -->
+  <div class="flex items-center max-w-4xl mx-auto w-full px-2 mb-8">
+    <%= link_to new_event_path,
+                class: "bg-gradient-to-r from-purple-400 to-indigo-400 flex items-center justify-center gap-2 text-gray-700 font-semibold text-base px-5 py-3 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg w-full" do %>
 
-<ul>
-  <% @events.order(:date).each do |e| %>
-    <li>
-      <%= link_to "#{e.name} – #{e.date}", event_path(e) %>
-    </li>
-  <% end %>
-</ul>
+      <span class="inline-flex items-center justify-center bg-white/30 rounded-lg p-1.5">
+        <!-- Plus Icon -->
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                d="M12 5v14m7-7H5"/>
+        </svg>
+      </span>
+      Add Event
+    <% end %>
+  </div>
+
+  <!-- Events List -->
+  <ul class="space-y-4">
+    <% @events.order(:date).each do |event| %>
+      <li>
+        <%= render EventCardComponent.new(event: event) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

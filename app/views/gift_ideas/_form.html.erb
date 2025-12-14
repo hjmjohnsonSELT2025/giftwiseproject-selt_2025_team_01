@@ -1,9 +1,11 @@
-<%= form_with model: [@recipient, @gift_idea], data: { controller: "gift-idea" } do |f| %>
+<%= form_with model: [@recipient, @gift_idea], local: true, data: { controller: "gift-idea" } do |f| %>
 
   <% if @gift_idea.errors.any? %>
-    <div style="color: red;">
-      <h2><%= pluralize(@gift_idea.errors.count, "error") %> prohibited this gift idea from being saved:</h2>
-      <ul>
+    <div class="mb-6 bg-red-50 border border-red-200 p-4 rounded-xl text-red-700">
+      <h2 class="font-semibold mb-2">
+        <%= pluralize(@gift_idea.errors.count, "error") %> prevented this gift from being saved:
+      </h2>
+      <ul class="list-disc ml-6">
         <% @gift_idea.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -11,27 +13,19 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title, data: {gift_idea_target: "title"} %>
-  </p>
+  <%= render FormFieldComponent.new(form: f, field: :title, options: { data: { gift_idea_target: "title" } }) %>
+  <%= render FormFieldComponent.new(form: f, field: :notes, type: :text_area, options: { rows: 4, data: { gift_idea_target: "notes" } }) %>
+  <%= render FormFieldComponent.new(form: f, field: :url, label: "Link", options: { data: { gift_idea_target: "url" } }) %>
 
-  <p>
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes, data: {gift_idea_target: "notes"} %>
-  </p>
-
-  <p>
-    <%= f.label :url, "URL" %><br>
-    <%= f.text_field :url, data: {gift_idea_target: "url"} %>
-  </p>
-
-  <p><%= f.submit submit_label || "Save" %>
+  <div class="mt-6 flex flex-col sm:flex-row gap-3">
     <button type="button"
             data-gift-idea-target="generateButton"
-            data-action="click->gift-idea#generateSuggestion">
+            data-action="click->gift-idea#generateSuggestion"
+            class="flex-1 w-full sm:w-auto bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200">
       AI Gift Idea
     </button>
-  </p>
 
+    <%= f.submit submit_label || "Save",
+                 class: "flex-1 w-full sm:w-auto bg-gradient-to-r from-purple-400 to-indigo-500 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200" %>
+  </div>
 <% end %>

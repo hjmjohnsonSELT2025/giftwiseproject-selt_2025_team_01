@@ -1,0 +1,13 @@
+<%# Usage: render 'shared/secondary_action_button', label:, path:, icon_svg: nil, method: nil, confirm: nil, full_width: false %>
+<%= link_to @path || path,
+            method: @method || method,
+            data: (@confirm || confirm) ? { turbo_method: @method || method, confirm: @confirm || confirm } : (@method || method ? { turbo_method: @method || method } : {}),
+            class: "flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-xl transition-all duration-200 bg-secondary text-secondary-foreground hover:shadow-md hover:scale-[1.02] active:scale-[0.98] #{(@full_width || full_width) ? 'w-full' : ''}" do %>
+  <% if @icon_svg || icon_svg %>
+    <span class="inline-flex items-center justify-center">
+      <%= @icon_svg || icon_svg %>
+    </span>
+  <% end %>
+  <span><%= @label || label %></span>
+<% end %>
+

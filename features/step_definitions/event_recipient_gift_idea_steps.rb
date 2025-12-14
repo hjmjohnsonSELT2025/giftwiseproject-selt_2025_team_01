@@ -35,10 +35,13 @@ end
 
 # Click edit/delete for a gift idea inside the event view
 When('I click {string} for {string} in {string}') do |action, gift_title, event_name|
-  event = Event.find_by!(name: event_name, user: User.find_by!(email: 'user@example.com'))
-  gift = EventRecipientGiftIdea.joins(:event_recipient).where(event_recipients: { event_id: event.id }).find_by!(title: gift_title)
+  user = User.find_by!(email: 'user@example.com')
+  event = Event.find_by!(name: event_name, user: user)
+  gift = EventRecipientGiftIdea.joins(:event_recipient)
+                               .where(event_recipients: { event_id: event.id })
+                               .find_by!(title: gift_title)
 
-  within("li[data-gift-id='#{gift.id}']") do
+  within("div[data-gift-id='#{gift.id}']") do
     click_link_or_button action
   end
 end

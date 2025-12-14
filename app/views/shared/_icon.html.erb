@@ -1,0 +1,28 @@
+<% bg_color = local_assigns[:bg_color] %>
+<% name     = local_assigns[:name] %>
+<% size     = local_assigns[:size] || 24 %>
+
+<div class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+     style="background: <%= bg_color %>;">
+  <svg class="text-white"
+       width="<%= size %>"
+       height="<%= size %>"
+       fill="none"
+       stroke="currentColor"
+       viewBox="0 0 24 24"
+       stroke-width="2"
+       stroke-linecap="round"
+       stroke-linejoin="round">
+    <% if name == "gift" %>
+      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+      <path d="M12 8v13"></path>
+      <path d="M3 12h18"></path>
+    <% elsif name == "calendar" %>
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    <% end %>
+
+  </svg>
+</div>

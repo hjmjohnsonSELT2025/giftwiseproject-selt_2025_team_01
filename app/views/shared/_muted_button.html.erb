@@ -1,0 +1,21 @@
+<%# Usage: render 'shared/muted_button', label:, path:, icon_svg: nil, method: nil, confirm: nil, full_width: false, disabled: false %>
+<%
+  http_method = @method || local_assigns[:method]
+  confirm_msg = @confirm || local_assigns[:confirm]
+  button_path = @path || local_assigns[:path]
+  button_label = @label || local_assigns[:label]
+  button_icon = @icon_svg || local_assigns[:icon_svg]
+  is_disabled = @disabled || local_assigns[:disabled]
+  is_full_width = @full_width || local_assigns[:full_width]
+%>
+
+<%= link_to button_path,
+            class: "border-[#F9DCDD] bg-[#f5f0f1] flex items-center justify-center gap-2 font-medium px-6 py-3 rounded-xl transition-all duration-200 bg-muted text-muted-foreground hover:shadow-md hover:scale-[1.02] active:scale-[0.98] #{is_disabled ? 'cursor-not-allowed opacity-60' : ''} #{is_full_width ? 'w-full' : ''}" do %>
+  <% if button_icon %>
+    <span class="inline-flex items-center justify-center">
+      <%= button_icon %>
+    </span>
+  <% end %>
+  <span><%= button_label %></span>
+<% end %>
+

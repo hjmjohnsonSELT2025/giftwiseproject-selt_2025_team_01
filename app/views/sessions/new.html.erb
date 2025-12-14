@@ -1,29 +1,30 @@
-<h1>Log In</h1>
+<div class="max-w-md mx-auto mt-12 bg-white p-6 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-6 text-center">Log In</h1>
 
-<%= form_with url: new_user_session_path, method: :post, local: true do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
+  <% if flash[:alert] %>
+    <div class="mb-4 px-4 py-2 rounded bg-red-100 text-red-800">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+  <%= form_with url: login_path, method: :post, local: true, class: "space-y-4" do |f| %>
+    <div>
+      <%= f.label :email, class: "block font-medium mb-1" %>
+      <%= f.email_field :email, class: "w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200" %>
+    </div>
 
-  <div>
-    <%= f.submit "Log In" %>
-  </div>
-<% end %>
+    <div>
+      <%= f.label :password, class: "block font-medium mb-1" %>
+      <%= f.password_field :password, class: "w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200" %>
+    </div>
 
-<p>
-  <%= link_to "Forgot your password?", new_user_password_path %>
-</p>
+    <div>
+      <%= f.submit "Log In", class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded" %>
+    </div>
+  <% end %>
 
-<p>
-  Don't have an account? <%= link_to "Sign Up", signup_path %>
-</p>
-
-<% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
-<% end %>
+  <p class="mt-4 text-center text-sm">
+    Don't have an account?
+    <%= link_to "Sign Up", signup_path, class: "text-blue-500 hover:underline" %>
+  </p>
+</div>

@@ -1,2 +1,2 @@
 web: bundle exec rails server -p $PORT
-release: rails db:migrate
+release: npm run build:css && rails db:migrate

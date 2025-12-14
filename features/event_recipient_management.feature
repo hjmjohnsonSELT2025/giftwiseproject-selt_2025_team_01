@@ -11,7 +11,7 @@ Feature: Manage event recipients
     Given a recipient exists with name "Alice" for user "user@example.com"
     And an event named "Birthday Party" on "2025-12-25" for user "user@example.com"
     When I visit the event page for "Birthday Party"
-    Then I should see "Add a Recipient to Event"
+    Then I should see "Add a Recipient"
     And I should see "Alice"
     When I click on "Add"
     Then I should see "Recipient added"

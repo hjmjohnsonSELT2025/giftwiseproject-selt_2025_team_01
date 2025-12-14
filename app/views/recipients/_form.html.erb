@@ -1,54 +1,80 @@
-<!--
-NOTE:
-This is a partial form for recipients (_form.html.erb), used by both
-new.html.erb and edit.html.erb to avoid duplicating form code.
+<!-- Form Container Card -->
+<div class="max-w-3xl mx-auto">
+  <div class="bg-white rounded-2xl shadow-md p-8">
+    <%= form_with model: @recipient, local: true, class: "space-y-6" do |f| %>
 
-Key points to remember:
-- `form_with model: @recipient` automatically sets the correct URL and HTTP method
-  depending on whether @recipient is a new record (POST /users/:id) or persisted (PATCH /users/:id)
-- `local: true` disables remote AJAX submission
-- `f.label` and `f.text_field` / `f.text_area` / `f.number_field` generate the form inputs tied to model attributes
-- Validation errors are displayed at the top if @recipient has any
-- Using a partial keeps forms DRY, any changes to the form only need to be made here
--->
-<%= form_with model: @recipient, local: true do |f| %>
-  <% if @recipient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
-      <ul>
-        <% @recipient.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <!-- Error Messages -->
+      <% if @recipient.errors.any? %>
+        <div class="bg-red-50 border-2 border-red-200 rounded-xl p-4">
+          <h3 class="text-lg font-semibold text-red-600 mb-2">
+            <%= pluralize(@recipient.errors.count, "error") %> prevented saving:
+          </h3>
+          <ul class="list-disc list-inside text-red-600 space-y-1">
+            <% @recipient.errors.full_messages.each do |msg| %>
+              <li class="text-sm"><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+      <!-- Name Field -->
+      <div class="space-y-2">
+        <%= f.label :name, "Name", class: "block text-base font-medium text-gray-700" %>
+        <%= f.text_field :name,
+            placeholder: "Enter name here...",
+            class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" %>
+      </div>
+
+      <!-- Age Field -->
+      <div class="space-y-2">
+        <%= f.label :age, "Age", class: "block text-base font-medium text-gray-700" %>
+        <%= f.text_field :age,
+            placeholder: "Enter age...",
+            class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" %>
+      </div>
+
+      <!-- Relationship Field -->
+      <div class="space-y-2">
+        <%= f.label :relationship, "Relationship", class: "block text-base font-medium text-gray-700" %>
+        <%= f.text_field :relationship,
+            placeholder: "e.g., Friend, Sister, Cousin...",
+            class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" %>
+      </div>
+
+      <!-- Hobbies Field (Textarea) -->
+      <div class="space-y-2">
+        <%= f.label :hobbies, "Hobbies & Interests", class: "block text-base font-medium text-gray-700" %>
+        <%= f.text_area :hobbies,
+            placeholder: "Enter hobbies and interests...",
+            rows: 4,
+            class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none" %>
+      </div>
+
+      <!-- Dislikes Field (Textarea) -->
+      <div class="space-y-2">
+        <%= f.label :dislikes, "Dislikes", class: "block text-base font-medium text-gray-700" %>
+        <%= f.text_area :dislikes,
+            placeholder: "Enter things they dislike...",
+            rows: 4,
+            class: "w-full bg-input-background border-2 border-[#F9DCDD] rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none" %>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-4">
+        <div class="flex gap-4">
+          <div class="flex-1">
+            <%= render 'shared/muted_button',
+                       label: 'Cancel',
+                       path: @recipient.persisted? ? recipient_path(@recipient) : recipients_path,
+                       full_width: true %>
+          </div>
+          <div class="flex-1">
+            <%= f.submit 'Save Recipient',
+                class: "w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
   </div>
-
-  <div>
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
-  </div>
-
-  <div>
-    <%= f.label :relationship %><br>
-    <%= f.text_field :relationship %>
-  </div>
-
-  <div>
-    <%= f.label :hobbies %><br>
-    <%= f.text_area :hobbies %>
-  </div>
-
-  <div>
-    <%= f.label :dislikes %><br>
-    <%= f.text_area :dislikes %>
-  </div>
-
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

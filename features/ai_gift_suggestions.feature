@@ -16,7 +16,7 @@ Feature: AI-Generated Gift Suggestions
     And I wait for the AI suggestion to load
     And I fill in "Title" with "Customized Gift Basket"
     And I fill in "Notes" with "Added personal touch to AI suggestion"
-    And I press "Create Gift Idea"
+    And I press "Save Gift Idea"
     Then I should see "Gift idea was successfully created"
     And I should see "Customized Gift Basket"
     And I should see "Added personal touch to AI suggestion"
@@ -36,8 +36,8 @@ Feature: AI-Generated Gift Suggestions
     And I am on the new gift ideas page for "Niece"
     When I click "AI Gift Idea"
     And I wait for the AI suggestion to load
-    And I click on "Back to Recipients"
-    Then I should be on the recipients page
+    And I click on "Back to Recipient"
+    Then I should be on the recipient page for "Niece"
     And the AI suggestion should not be saved
 
   Scenario: Generate AI suggestion considers relationship

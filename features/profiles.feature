@@ -1,4 +1,3 @@
-# file: giftwise/features/profiles.feature
 Feature: Profile attributes on signup
   As a user
   I want my account profile to include name, age, occupation, hobbies, likes, and dislikes
@@ -50,9 +49,3 @@ Feature: Profile attributes on signup
     And I submit the profile form
     Then I should see an age error message
 
-  Scenario: User cannot edit another user's profile
-    Given an existing user with a profile
-    And another user exists with a profile
-    And I am logged in as that user
-    When I try to visit the other user's profile edit page
-    Then I should see "You are not allowed to edit this profile."

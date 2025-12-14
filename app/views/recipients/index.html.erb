@@ -1,18 +1,30 @@
-<h1>Your Recipients</h1>
+<!-- Header -->
+<div class="pt-8 pb-2 px-2 bg-[#fef8f9]">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-xl font-bold text-gray-700">Your Gift Recipients</h1>
+    <p class="text-muted-foreground mt-1 mb-6 text-sm">Keep track of special people and their gift preferences</p>
+  </div>
+</div>
 
-<p>
-  Logged in as <%= current_user.email %> |
-  <%= link_to "View Profile", profile_path(current_user.profile) %> |
-  <%= link_to "View Events", events_path %> |
-  <%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?" } %>
-</p>
+<!-- Add Recipient Button -->
+<div class="flex items-center max-w-4xl mx-auto w-full px-2 mb-8">
+  <%= render 'shared/action_button',
+             label: 'Add Recipient',
+             path: new_recipient_path,
+             color_classes: 'bg-gradient-to-r from-[#ff9b9f] to-[#fd79a8] text-gray-700',
+             icon_svg: '<svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14m7-7H5"/></svg>'.html_safe,
+             full_width: true %>
+</div>
 
-<%= link_to "Add Recipient", new_recipient_path %>
-
-<ul>
-  <% @recipients.each do |r| %>
-    <li>
-      <%= link_to r.name, recipient_path(r) %>
-    </li>
-  <% end %>
-</ul>
+<!-- Recipients List -->
+<div class="max-w-4xl mx-auto w-full px-2">
+  <ul class="space-y-4">
+    <% bg_colors = ['bg-gradient-to-br from-pink-400 to-pink-500', 'bg-gradient-to-br from-blue-400 to-purple-500', 'bg-gradient-to-br from-yellow-300 to-orange-400'] %>
+    <% @recipients.each_with_index do |recipient, i| %>
+      <li>
+        <%#= render RecipientCardComponent.new(recipient: recipient, bg_color: bg_colors[i % bg_colors.size]) %>
+        <%= render RecipientCardComponent.new(recipient: recipient, index: i) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

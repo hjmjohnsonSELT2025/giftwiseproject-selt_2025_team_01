@@ -35,6 +35,9 @@
 /config/master.key
 
 .idea/
+.rbs_collection/
+.gem_rbs_collection/
+**/AppData/
 
 # Ignore uploaded files in development
 /public/uploads/*
@@ -65,3 +68,5 @@
 # The double asterisk (**) matches directories recursively.
 **/rbs_collection/**/*.lock.yaml
 **/rbs_collection/**/*.yaml
+/app/assets/builds/*
+!/app/assets/builds/.keep

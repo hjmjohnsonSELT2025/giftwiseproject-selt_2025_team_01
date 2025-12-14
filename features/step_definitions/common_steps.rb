@@ -11,6 +11,11 @@ Given('I am on the home page') do
 end
 
 When('I click on {string}') do |text|
+  # Acceptable link texts for profile
+  if text == "View Profile"
+    text = "Profile"
+  end
+
   click_link_or_button text
 end
 

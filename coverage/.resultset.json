@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/user.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -93,7 +93,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/application_record.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/application_record.rb": {
         "lines": [
           1,
           null,
@@ -106,13 +106,13 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/helpers/application_helper.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/helpers/events_helper.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/helpers/events_helper.rb": {
         "lines": [
           1,
           1,
@@ -121,31 +121,31 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/helpers/profiles_helper.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/helpers/profiles_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/helpers/sessions_helper.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/helpers/sessions_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/helpers/users_helper.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/helpers/users_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/helpers/users/omniauth_callbacks_helper.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/helpers/users/omniauth_callbacks_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/profiles_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/profiles_controller.rb": {
         "lines": [
           null,
           1,
@@ -189,7 +189,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/application_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/application_controller.rb": {
         "lines": [
           1,
           null,
@@ -246,7 +246,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/event.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/event.rb": {
         "lines": [
           1,
           null,
@@ -270,7 +270,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/gift_idea.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/gift_idea.rb": {
         "lines": [
           1,
           1,
@@ -284,7 +284,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/concerns/url_validatable.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/concerns/url_validatable.rb": {
         "lines": [
           1,
           1,
@@ -332,7 +332,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/profile.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/profile.rb": {
         "lines": [
           null,
           null,
@@ -349,7 +349,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/recipient.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/recipient.rb": {
         "lines": [
           1,
           null,
@@ -385,7 +385,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/users/omniauth_callbacks_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/users/omniauth_callbacks_controller.rb": {
         "lines": [
           1,
           1,
@@ -414,7 +414,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/recipients_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/recipients_controller.rb": {
         "lines": [
           1,
           null,
@@ -511,7 +511,17 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/events_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/recipient_card_component.rb": {
+        "lines": [
+          1,
+          1,
+          6,
+          6,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/events_controller.rb": {
         "lines": [
           1,
           null,
@@ -633,7 +643,31 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/event_recipient.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/entity_header_card_component.rb": {
+        "lines": [
+          1,
+          1,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/event_details_component.rb": {
+        "lines": [
+          1,
+          1,
+          7,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/event_recipient.rb": {
         "lines": [
           1,
           null,
@@ -654,7 +688,31 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/models/event_recipient_gift_idea.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/available_recipients_component.rb": {
+        "lines": [
+          1,
+          1,
+          7,
+          7,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/event_recipient_card_component.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          4,
+          4,
+          4,
+          4,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/models/event_recipient_gift_idea.rb": {
         "lines": [
           1,
           1,
@@ -667,7 +725,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/event_recipient_gift_ideas_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/event_recipient_gift_ideas_controller.rb": {
         "lines": [
           1,
           null,
@@ -786,10 +844,64 @@
           null,
           0,
           null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/controllers/gift_ideas_controller.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/form_field_component.rb": {
+        "lines": [
+          1,
+          1,
+          25,
+          25,
+          25,
+          25,
+          25,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/event_card_component.rb": {
+        "lines": [
+          1,
+          1,
+          3,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/gift_ideas_controller.rb": {
         "lines": [
           1,
           null,
@@ -874,7 +986,7 @@
           null
         ]
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/channels/application_cable/channel.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/channels/application_cable/channel.rb": {
         "lines": [
           0,
           0,
@@ -883,7 +995,7 @@
         ],
         "branches": {}
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/channels/application_cable/connection.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
           0,
@@ -892,7 +1004,50 @@
         ],
         "branches": {}
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/jobs/application_job.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/gift_idea_card_component.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/section_header_component.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/jobs/application_job.rb": {
         "lines": [
           0,
           null,
@@ -904,7 +1059,7 @@
         ],
         "branches": {}
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/mailers/application_mailer.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/mailers/application_mailer.rb": {
         "lines": [
           0,
           null,
@@ -916,7 +1071,7 @@
         ],
         "branches": {}
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/mailers/password_reset_mailer.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/mailers/password_reset_mailer.rb": {
         "lines": [
           0,
           0,
@@ -935,7 +1090,7 @@
         ],
         "branches": {}
       },
-      "/mnt/c/Users/adria/RubymineProjects/giftwiseproject/app/services/chat_service.rb": {
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/services/chat_service.rb": {
         "lines": [
           null,
           null,
@@ -994,6 +1149,14 @@
           0,
           null,
           null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -1019,6 +1182,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1765666183
+    "timestamp": 1765671599
   }
 }

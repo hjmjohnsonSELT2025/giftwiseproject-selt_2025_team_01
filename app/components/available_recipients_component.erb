@@ -1,0 +1,16 @@
+<div class="mt-8">
+  <h2 class="text-lg font-semibold text-gray-700 mb-4">Add a Recipient</h2>
+
+  <ul class="space-y-3">
+    <% @recipients.each do |recipient| %>
+      <li class="flex justify-between bg-white p-3 rounded-xl shadow">
+        <span><%= recipient.name %></span>
+
+        <%= button_to "Add",
+                      add_recipient_event_path(@event, recipient_id: recipient.id),
+                      method: :post,
+                      class: "text-indigo-600 font-medium" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

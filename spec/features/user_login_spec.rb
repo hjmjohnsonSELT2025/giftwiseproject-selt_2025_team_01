@@ -9,7 +9,7 @@ RSpec.feature "User Login", type: :feature do
     fill_in "Email", with: "test@example.com"
     fill_in "Password", with: "password123"
     click_button "Log in"
-    expect(page).to have_content("Logged in as test@example.com")
+    expect(page).to have_content("Signed in successfully.")
   end
 
   scenario "User fails login with invalid credentials" do
