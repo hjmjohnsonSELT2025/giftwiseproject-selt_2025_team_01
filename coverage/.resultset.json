@@ -145,6 +145,63 @@
           null
         ]
       },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/channels/application_cable/channel.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/channels/application_cable/connection.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/gift_idea_card_component.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/section_header_component.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/controllers/profiles_controller.rb": {
         "lines": [
           null,
@@ -1079,67 +1136,6 @@
           null
         ]
       },
-      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/channels/application_cable/channel.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/channels/application_cable/connection.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/gift_idea_card_component.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/components/section_header_component.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {}
-      },
       "/home/nickm/SELT_2025Fall/giftwiseproject-selt_2025_team_01/app/jobs/application_job.rb": {
         "lines": [
           0,
@@ -1164,6 +1160,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1765692445
+    "timestamp": 1765693227
   }
 }
