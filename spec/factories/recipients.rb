@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :recipient do
-    user { nil }
+    association :user
     name { "MyString" }
-    description { "MyText" }
   end
 end
